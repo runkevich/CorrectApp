@@ -16,7 +16,9 @@ public interface IMessageView {
     void hideDialogMessage();
     void hideMessage();
 
-    void showMessage(@NonNull String message,boolean closable, @Nullable String actionMessage,
+    void showMessage(@NonNull String message,
+                     boolean closable,
+                     @Nullable String actionMessage,
                      @Nullable IMessageView.IActionListener iActionListener);
 
     interface IActionListener{

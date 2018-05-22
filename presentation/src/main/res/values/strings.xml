@@ -20,4 +20,11 @@
 
     <string name="progress_bar_message">Loading</string>
     <string name="pressed_to_exit">Do you want to exit</string>
+
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">LiKu7bphgmBuD2eYjf6MHfYWX</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">	seLljtdaALOgMX0JsJgvZBd3ZuqZWl3MMIN7tmcze5hixjix4n</string>
+
+    <string name="facebook_app_id">196125281110841</string>
+    <string name="fb_login_protocol_scheme">fb196125281110841</string>
 </resources>

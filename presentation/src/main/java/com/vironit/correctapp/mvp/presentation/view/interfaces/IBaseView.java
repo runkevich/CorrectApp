@@ -15,6 +15,8 @@ public interface IBaseView  extends MvpView,IMessageView,IProgressView {
 
     void showDialogMessage(@NonNull String message, boolean closable, boolean cancelable);
 
-    void showMessage(@NonNull String message, boolean closable, @Nullable String actionMessage,
+    void showMessage(@NonNull String message,
+                     boolean closable,
+                     @Nullable String actionMessage,
                      @Nullable View.OnClickListener actionListener);
 }

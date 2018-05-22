@@ -43,4 +43,8 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.15'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
+
+    implementation 'com.twitter.sdk.android:twitter:3.1.1'
+    implementation 'com.facebook.android:facebook-android-sdk:4.33.0'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
 }

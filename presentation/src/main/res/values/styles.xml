@@ -46,7 +46,7 @@
 
 
     //______________________________________________
-    <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
+    <style name="AlertDialogStyle" parent="Base.AlertDialog.AppCompat">
 
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">#111</item>
@@ -54,23 +54,23 @@
 
     </style>
 
-    <style name="AlertDialogStyleSimple" parent="AlertDialog.AppCompat">
+    <style name="AlertDialogStyleSimple" parent="Base.AlertDialog.AppCompat">
 
-        <!--&lt;!&ndash;item RadioButton or CheckBox color&ndash;&gt;-->
-        <!--<item name="colorControlNormal">@android:color/white</item>-->
-        <!--<item name="colorControlActivated">@color/colorAccent</item>-->
+        <!--item RadioButton or CheckBox color-->
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
 
-        <!--&lt;!&ndash;item text color&ndash;&gt;-->
-        <!--<item name="textColorAlertDialogListItem">@android:color/white</item>-->
+        <!--item text color-->
+        <item name="textColorAlertDialogListItem">@android:color/white</item>
 
-        <!--&lt;!&ndash;buttons color&ndash;&gt;-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--buttons color-->
+        <item name="colorAccent">@color/colorAccent</item>
 
-        <!--&lt;!&ndash;title and message color&ndash;&gt;-->
-        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@android:color/white</item>
 
-        <!--&lt;!&ndash;dialog background&ndash;&gt;-->
-        <!--<item name="android:windowBackground">@drawable/background_dialog</item>-->
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/background_dialog</item>
     </style>
 
 </resources>

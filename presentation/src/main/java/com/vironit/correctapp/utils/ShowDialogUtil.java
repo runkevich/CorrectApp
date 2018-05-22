@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,8 @@ public abstract class ShowDialogUtil {
             return null;
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
+        //activity, R.style.AlertDialogStyle)
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyle))
                 .setTitle(titleText)
                 .setIcon(R.mipmap.ic_launcher_round)
                 .setView(initProgressView(activity, messageText))
@@ -69,8 +71,8 @@ public abstract class ShowDialogUtil {
             return null;
         }
 
-        //TODO 16.05 style
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity/*, R.style.AlertDialogStyleSimple*/)
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyleSimple))
+                //(activity/*, R.style.AlertDialogStyleSimple*/)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(positiveOptionMessage, positiveListener)

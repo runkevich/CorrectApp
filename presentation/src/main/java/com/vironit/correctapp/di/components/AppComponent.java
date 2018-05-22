@@ -8,6 +8,7 @@ import com.vironit.correctapp.di.modules.IteractorModule;
 import com.vironit.correctapp.di.modules.ManagerModule;
 import com.vironit.correctapp.di.modules.RepozitoryModule;
 import com.vironit.correctapp.di.modules.SchedulersModule;
+import com.vironit.correctapp.mvp.presentation.presenter.LoginPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.TestPresenter;
 
 import javax.inject.Singleton;
@@ -34,4 +35,5 @@ public interface AppComponent {
 
     void inject(App app);
     void inject(TestPresenter testPresenter);
+    void inject(LoginPresenter loginPresenter);
 }

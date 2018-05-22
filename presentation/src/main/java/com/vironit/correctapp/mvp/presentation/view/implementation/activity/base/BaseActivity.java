@@ -174,7 +174,6 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
             hideMessage();
         }
 
-       // hideMessage();
         @Nullable
         View rootView = findViewById(getRootViewResId());
 

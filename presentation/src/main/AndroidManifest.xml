@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vironit.correctapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -28,5 +30,6 @@
         </activity>
 
         <activity android:name=".mvp.presentation.view.implementation.activity.TestActivity" />
+        <activity android:name=".mvp.presentation.view.implementation.activity.LoginActivity" />
     </application>
 </manifest>

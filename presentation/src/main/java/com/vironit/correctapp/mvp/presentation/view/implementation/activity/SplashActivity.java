@@ -7,13 +7,16 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 
 public class SplashActivity extends MvpAppCompatActivity{
 
-   // @InjectPresenter
-  //  SplashPresenter splashPresenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //defaultLoginTwitter();
+        startActivity(new Intent(this, LoginActivity.class));
 
-        startActivity(new Intent(this, TestActivity.class));
+
     }
+
+//    private void defaultLoginTwitter() {
+//
+//    }
 }
