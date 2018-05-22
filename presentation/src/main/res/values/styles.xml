@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/text_color</item>
+
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+
+        <item name="android:colorBackground">@color/color_white</item>
+
+        <item name="android:statusBarColor" tools:targetApi="21">@color/color_start_light</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/color_end_dark</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="actionMenuTextColor">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/color_window_background</item>
+
+    </style>
+
+    <style name="AppTheme.Splash">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.TransparentActivity">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:windowIsFloating">true</item>
+
+    </style>
+
+
+
+
+    //______________________________________________
+    <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">#111</item>
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+
+    </style>
+
+    <style name="AlertDialogStyleSimple" parent="AlertDialog.AppCompat">
+
+        <!--&lt;!&ndash;item RadioButton or CheckBox color&ndash;&gt;-->
+        <!--<item name="colorControlNormal">@android:color/white</item>-->
+        <!--<item name="colorControlActivated">@color/colorAccent</item>-->
+
+        <!--&lt;!&ndash;item text color&ndash;&gt;-->
+        <!--<item name="textColorAlertDialogListItem">@android:color/white</item>-->
+
+        <!--&lt;!&ndash;buttons color&ndash;&gt;-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+
+        <!--&lt;!&ndash;title and message color&ndash;&gt;-->
+        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
+
+        <!--&lt;!&ndash;dialog background&ndash;&gt;-->
+        <!--<item name="android:windowBackground">@drawable/background_dialog</item>-->
+    </style>
+
+</resources>
