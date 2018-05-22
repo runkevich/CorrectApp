@@ -48,6 +48,7 @@ public class App extends Application implements HasActivityInjector, HasServiceI
         return sAppComponent;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
