@@ -59,7 +59,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements ITestVi
                 .setOnClickListener(v -> showDialogMessage("simple_message", true,true));
 
         findViewById(R.id.btn_show_dialog_with_options)
-                .setOnClickListener(v -> showDialogwithOptions("dialog_with_options",
+                .setOnClickListener(v -> showDialogWithOptions("dialog_with_options",
                         "dialog_with_options",
                         "ok",
                         "cancel",

@@ -41,6 +41,7 @@ public class ResourcesManagerImpl implements ResourcesManager {
         }
         return str != null ? str : "";
     }
+
 }
 
 //ctr alt l

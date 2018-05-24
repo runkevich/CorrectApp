@@ -5,6 +5,10 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(SkipStrategy.class)
 public interface ILoginView extends IBaseView {
+    void showFailMessage();
+
+    void showSuccesMessage();
+
 
     //void checkRegistration();
 

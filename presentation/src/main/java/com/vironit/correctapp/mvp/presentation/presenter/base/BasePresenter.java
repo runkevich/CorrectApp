@@ -3,6 +3,7 @@ package com.vironit.correctapp.mvp.presentation.presenter.base;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.vironit.correctapp.constans.AppConstans;
@@ -22,13 +23,6 @@ public abstract class BasePresenter<View extends IBaseView> extends MvpPresenter
 
     private final CompositeDisposable mLiteCompositeDisposable = new CompositeDisposable();
     private final CompositeDisposable mHardCompositeDisposable = new CompositeDisposable();
-
-    @Override
-    public void attachView(View view) {
-        AppLog.logPresenter(this);
-        super.attachView(view);
-    }
-
     @Inject
     @Named(AppConstans.UI_SCHEDULER)
     protected Scheduler mUIScheduler;
@@ -44,12 +38,66 @@ public abstract class BasePresenter<View extends IBaseView> extends MvpPresenter
     @Inject
     protected ResourcesManager mResourcesManager;
 
+    @Override
+    public void attachView(View view) {
+        AppLog.logPresenter(this);
+        super.attachView(view);
+    }
+
+    @Override
+    protected void onFirstViewAttach() {
+        AppLog.logPresenter(this);
+        super.onFirstViewAttach();
+    }
+    @Override
+    public void detachView(View view) {
+        clearLiteDisposable();
+        AppLog.logPresenter(this);
+        super.detachView(view);
+    }
+
+    @Override
+    public void destroyView(View view) {
+
+        AppLog.logPresenter(this);
+        super.destroyView(view);
+    }
+
+    @Override
+    public void onDestroy() {
+        clearHardDisposable();
+        AppLog.logPresenter(this);
+        super.onDestroy();
+    }
+
+
+    protected String getString(@StringRes int stringId) {
+        return mResourcesManager.getString(stringId);
+    }
+
+    protected final void clearDisposableIfPossible(@Nullable Disposable disposable) {
+        if (disposable != null && !disposable.isDisposed()) {
+            disposable.dispose();
+        }
+    }
     protected void addLiteDisposable(@Nullable  Disposable disposable){
-        mLiteCompositeDisposable.add(disposable);
+        if (disposable != null) {
+            mLiteCompositeDisposable.add(disposable);
+        }
     }
 
     protected void addHardDisposable(@Nullable Disposable disposable){
-        mHardCompositeDisposable.add(disposable);
+        if (disposable != null) {
+            mHardCompositeDisposable.add(disposable);
+        }
+    }
+
+    protected void clearLiteDisposable(){
+        mLiteCompositeDisposable.clear();
+    }
+
+    protected void clearHardDisposable(){
+        mHardCompositeDisposable.clear();
     }
 
 
@@ -64,29 +112,9 @@ public abstract class BasePresenter<View extends IBaseView> extends MvpPresenter
 
     }
 
-    @Override
-    protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
-    }
 
-    @Override
-    public void detachView(View view) {
-        AppLog.logPresenter(this);
-        mLiteCompositeDisposable.clear();
-        super.detachView(view);
-    }
 
-    @Override
-    public void destroyView(View view) {
-        super.destroyView(view);
-    }
 
-    @Override
-    public void onDestroy() {
-        AppLog.logPresenter(this);
-        mHardCompositeDisposable.clear();
-        super.onDestroy();
-    }
 
 
 

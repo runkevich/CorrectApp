@@ -2,6 +2,7 @@ package com.vironit.correctapp.utils;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.vironit.correctapp.BuildConfig;
@@ -53,6 +54,20 @@ public abstract class AppLog {
     private  String getAPP_TAG(){
      return APP_TAG;
     }
+
+    public static void logFragment(@NonNull Fragment fragment) {
+        if (isLogEnabled()){
+            Log.i(getAppTag(), "MY_APP_TAG");
+        }
+    }
+
+    private static String getAppTag() {
+        return "MY_APP_TAG";
+    }
+
+//    private static String getInfo(Object o){
+//        return "Class: "+getClassName(o)+"."+getMethodName() + "()";
+//    }
 }
 
 

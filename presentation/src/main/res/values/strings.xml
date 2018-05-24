@@ -3,6 +3,8 @@
 
     <string name="ok">Ok</string>
 
+    <string name="fail">Fail</string>
+
     <string name="large_string">Проснувшись однажды утром после беспокойного сна, Грегор Замза обнаружил,
         что он у себя в постели превратился в страшное насекомое. Лежа на панцирнотвердой спине, он видел,
         стоило ему приподнять голову, свой коричневый, выпуклый, разделенный дугообразными чешуйками живот,
@@ -25,6 +27,8 @@
     <string name="com.twitter.sdk.android.CONSUMER_KEY">LiKu7bphgmBuD2eYjf6MHfYWX</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">	seLljtdaALOgMX0JsJgvZBd3ZuqZWl3MMIN7tmcze5hixjix4n</string>
 
-    <string name="facebook_app_id">196125281110841</string>
+    <string name="facebook_app_id">388390864979736</string>
     <string name="fb_login_protocol_scheme">fb196125281110841</string>
+
+    <string name="server_client_id">234475339221-n0lc37q7hqpj1all6am2do4giuvso5cp.apps.googleusercontent.com</string>
 </resources>

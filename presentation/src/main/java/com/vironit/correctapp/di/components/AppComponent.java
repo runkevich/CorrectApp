@@ -8,6 +8,7 @@ import com.vironit.correctapp.di.modules.IteractorModule;
 import com.vironit.correctapp.di.modules.ManagerModule;
 import com.vironit.correctapp.di.modules.RepozitoryModule;
 import com.vironit.correctapp.di.modules.SchedulersModule;
+import com.vironit.correctapp.di.modules.SocialNetworkModule;
 import com.vironit.correctapp.mvp.presentation.presenter.LoginPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.TestPresenter;
 
@@ -20,7 +21,7 @@ import dagger.Component;
 //предоставляет - собирает
 @Singleton
 @Component(modules = {SchedulersModule.class, RepozitoryModule.class, ManagerModule.class, AppActivitiesModule.class,
-        ApplicationModule.class, IteractorModule.class})
+        ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class})
 public interface AppComponent {
 
 

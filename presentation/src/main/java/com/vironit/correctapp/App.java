@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 
+import com.twitter.sdk.android.core.Twitter;
 import com.vironit.correctapp.di.components.AppComponent;
 import com.vironit.correctapp.di.components.DaggerAppComponent;
 
@@ -53,6 +54,7 @@ public class App extends Application implements HasActivityInjector, HasServiceI
     public void onCreate() {
         super.onCreate();
         initDagger2();
+        Twitter.initialize(this);
 
     }
 

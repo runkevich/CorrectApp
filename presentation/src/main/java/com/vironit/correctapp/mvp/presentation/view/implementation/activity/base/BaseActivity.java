@@ -8,6 +8,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -27,6 +28,7 @@ import com.vironit.correctapp.utils.ShowSnackBarUtil;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import io.reactivex.Scheduler;
 
@@ -45,7 +47,7 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
     protected Scheduler mComputationScheduler;
 
     @Inject
-    protected ResourcesManager injectResourceManager;
+    protected ResourcesManager mResourceManager;
 
     @Nullable
     private Snackbar mSnackbar;
@@ -53,38 +55,109 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
     @Nullable
     private AlertDialog mAlertDialog;
 
+    protected final Handler mHandler = new Handler();
+
     @LayoutRes
-    public abstract  int getLayoutResId();
+    public abstract int getLayoutResId();
 
     @IdRes
     public abstract int getRootViewResId();
 
-    protected final Handler mHandler = new Handler();
+    protected abstract P getPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppLog.logActivity(this);
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        if (getIntent() != null) {
+            if (getIntent().getExtras() != null) {
+                initFromIntentExtras(getIntent().getExtras());
+            }
+
+        }
+
+        initBeforeLayoutAttach();
         setContentView(getLayoutResId());
+        ButterKnife.bind(this);
+        initViewBeforeAttached();
+        getMvpDelegate().onAttach();
 
     }
 
-   protected abstract P getPresenter();
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getMvpDelegate().onAttach();
+    }
+
+    @Override
+    protected void onStart() {
+        AppLog.logActivity(this);
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        AppLog.logActivity(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        AppLog.logActivity(this);
+        hideKeyboard();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        AppLog.logActivity(this);
+        hideProgress();
+        hideDialogMessage();
+        hideMessage();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AppLog.logActivity(this);
+        super.onDestroy();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        getPresenter().onRequestPermissionsResult(requestCode,permissions,grantResults, this);
+        getPresenter().onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getPresenter().onActivityResult(requestCode,resultCode,data,this);
+        getPresenter().onActivityResult(requestCode, resultCode, data, this);
     }
 
+    protected void initFromIntentExtras(@NonNull Bundle bundle) {
+
+        //TODO
+
+    }
+
+    void initViewBeforeAttached() {
+
+        //TODO
+
+    }
+
+    void initBeforeLayoutAttach() {
+
+        //TODO
+
+    }
+
+    protected  String getResourseString(@StringRes int stringId) {
+        return mResourceManager.getString(stringId);
+    }
 
 
     @Override
@@ -93,57 +166,59 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     @Override
+    public void cancelScreen() {
+        finish();
+    }
+
+    @Override
     public void hideProgress() {
-        if (mAlertDialog!=null && mAlertDialog.isShowing()){
+        if (mAlertDialog != null && mAlertDialog.isShowing()) {
             mAlertDialog.dismiss();
         }
     }
 
-    @Override
-    public void cancelScreen() {
-
-    }
 
     @Override
     public void showProgress(@NonNull String message) {
+        //String titleText = getResources().getString(R.string.progress_title);
         hideProgress();
-        mAlertDialog = ShowDialogUtil.showProgressDialog(this,getString(R.string.app_name),message);
+        mAlertDialog = ShowDialogUtil.showProgressDialog(this, getString(R.string.app_name), message);
     }
 
     @Override
     public void showProgress() {
-
-        hideProgress();
-        mAlertDialog = ShowDialogUtil.showProgressDialog(this,getString(R.string.app_name),null);
+        showProgress(null);
+//        hideProgress();
+//        mAlertDialog = ShowDialogUtil.showProgressDialog(this, getString(R.string.app_name), null);
     }
 
     @Override
     public void showAutoClosableMessage(@NonNull String message) {
 
-        showMessage(message,true,null, (View.OnClickListener) null);
+        showMessage(message, true, null, (View.OnClickListener) null);
 
     }
 
     @Override
     public void showDialogMessage(@NonNull String message, boolean closable, boolean cancelable) {
-
-        showDialogwithOptions(getString(R.string.app_name),message,null,
-                null,null,null);
+        String title = getResources().getString(R.string.app_name);
+        showDialogWithOptions(title, message, null,
+                null, null, null);
 
 
     }
 
     @Override
-    public void showDialogwithOptions(@Nullable String title,
+    public void showDialogWithOptions(@Nullable String title,
                                       @NonNull String message,
                                       @Nullable String positiveOptionMessage,
                                       @Nullable String negative,
-                                      @Nullable  DialogInterface.OnClickListener  positiveListener,
-                                      @Nullable  DialogInterface.OnClickListener  negativeListener) {
+                                      @Nullable DialogInterface.OnClickListener positiveListener,
+                                      @Nullable DialogInterface.OnClickListener negativeListener) {
 
         hideDialogMessage();
-        mAlertDialog = ShowDialogUtil.showMessageDialog(this,title,message,positiveOptionMessage,negative,
-                positiveListener,negativeListener,false);
+        mAlertDialog = ShowDialogUtil.showMessageDialog(this, title, message, positiveOptionMessage, negative,
+                positiveListener, negativeListener, false);
 
     }
 
@@ -151,7 +226,7 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
     @Override
     public void hideDialogMessage() {
 
-        if (mAlertDialog!=null && mAlertDialog.isShowing()){
+        if (mAlertDialog != null && mAlertDialog.isShowing()) {
             mAlertDialog.dismiss();
         }
 
@@ -159,7 +234,7 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
 
     @Override
     public void hideMessage() {
-        if (mSnackbar != null){
+        if (mSnackbar != null) {
             mSnackbar.dismiss();
         }
 
@@ -170,18 +245,18 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
                             boolean closable,
                             @Nullable String actionMessage,
                             @Nullable View.OnClickListener actionListener) {
-        if (mSnackbar!=null) {
-            hideMessage();
-        }
+        hideKeyboard();
+        hideMessage();
 
         @Nullable
         View rootView = findViewById(getRootViewResId());
 
-        if (rootView == null){
+        if (rootView == null) {
             rootView = getWindow().getDecorView();
         }
-        /*@BaseTransientBottomBar.Duration */int duration = closable ? BaseTransientBottomBar.LENGTH_SHORT : BaseTransientBottomBar.LENGTH_INDEFINITE;
-        mSnackbar = ShowSnackBarUtil.showSnackBar(rootView,this,message,actionMessage,actionListener,duration);
+        /*@BaseTransientBottomBar.Duration */
+        int duration = closable ? BaseTransientBottomBar.LENGTH_SHORT : BaseTransientBottomBar.LENGTH_INDEFINITE;
+        mSnackbar = ShowSnackBarUtil.showSnackBar(rootView, this, message, actionMessage, actionListener, duration);
 
     }
 }

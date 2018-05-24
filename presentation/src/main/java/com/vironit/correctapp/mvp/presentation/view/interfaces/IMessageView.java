@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 public interface IMessageView {
     void showAutoClosableMessage(@NonNull String message);
     void showDialogMessage(@NonNull String message, boolean closable, boolean cancelable);
-    void showDialogwithOptions(@NonNull String title,
+    void showDialogWithOptions(@NonNull String title,
                                @NonNull String message,
                                @NonNull String positiveOptionMessage,
                                @NonNull String negative,
