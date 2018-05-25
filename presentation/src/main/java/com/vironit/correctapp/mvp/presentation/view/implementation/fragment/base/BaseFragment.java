@@ -1,4 +1,4 @@
-package com.vironit.correctapp.mvp.presentation.view.implementation.activity.base;
+package com.vironit.correctapp.mvp.presentation.view.implementation.fragment.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.vironit.correctapp.mvp.model.manager.interfaces.ResourcesManager;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
+import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IBaseView;
 import com.vironit.correctapp.utils.AppLog;
 import com.vironit.correctapp.utils.ShowSnackBarUtil;

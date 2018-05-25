@@ -42,6 +42,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     }
 
     //?
+
     public static void start(@Nullable Context context) {
         if (context != null) {
             context.startActivity(new Intent(context, LoginActivity.class));
@@ -80,5 +81,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @Override
     public void showSuccesMessage() {
         Toast.makeText(this, getString(R.string.ok), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void goToHomeActivity() {
+        startActivity(new Intent(this,HomeActivity.class));
     }
 }

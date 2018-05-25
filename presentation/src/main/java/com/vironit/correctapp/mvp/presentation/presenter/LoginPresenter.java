@@ -54,7 +54,6 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
     @Override
     public void attachView(ILoginView view) {
         super.attachView(view);
-
     }
 
     public void clickOnFacebook (@NonNull Activity activity){
@@ -65,7 +64,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Log.i("MY_APP_TAG", loginResult.getAccessToken().getUserId());
-                        getViewState().showSuccesMessage();
+                        getViewState().goToHomeActivity();
                     }
 
                     @Override
@@ -94,7 +93,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         mTwitterAuthClient.authorize(activity, new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
-                getViewState().showSuccesMessage();
+                getViewState().goToHomeActivity();
             }
 
             @Override
@@ -107,7 +106,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.i("TAG","Google");
-            getViewState().showSuccesMessage();
+            getViewState().goToHomeActivity();
         } catch (ApiException e) {
 
             Log.w("TAG", "signInResult:failed code=" + e.getStatusCode());
@@ -115,6 +114,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
 
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data, @NonNull BaseActivity activity) {
         super.onActivityResult(requestCode, resultCode, data, activity);

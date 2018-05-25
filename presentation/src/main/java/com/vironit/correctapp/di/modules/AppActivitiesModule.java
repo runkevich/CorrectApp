@@ -1,6 +1,7 @@
 package com.vironit.correctapp.di.modules;
 
 import com.vironit.correctapp.di.annotations.ActivityScope;
+import com.vironit.correctapp.mvp.presentation.view.implementation.activity.HomeActivity;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.LoginActivity;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.TestActivity;
 
@@ -20,6 +21,9 @@ public interface AppActivitiesModule {
     @ContributesAndroidInjector(modules = ActivityModule.class)
     LoginActivity loginActivityInjector();
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = ActivityModule.class)
+    HomeActivity homeActivityInjector();
 
 
 }

@@ -31,6 +31,7 @@
 
         <activity android:name=".mvp.presentation.view.implementation.activity.TestActivity" />
         <activity android:name=".mvp.presentation.view.implementation.activity.LoginActivity" />
+        <activity android:name=".mvp.presentation.view.implementation.activity.HomeActivity" />
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
