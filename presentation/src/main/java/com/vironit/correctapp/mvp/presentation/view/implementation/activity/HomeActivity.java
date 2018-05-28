@@ -29,10 +29,10 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(getContainerViewId(),NewsFragment.newInstance())
-//                .commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(getContainerViewId(),ProfileFragment.newInstance())
+                .commit();
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             switch (id) {

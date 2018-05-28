@@ -10,4 +10,6 @@ public class ChatPresenter extends BaseAppPresenter<IChatView>{
     public ChatPresenter() {
         App.getsAppComponent().inject(this);
     }
+
+
 }

@@ -2,6 +2,8 @@
     package="com.vironit.correctapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".App"
@@ -10,13 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:noHistory="true"
+            android:name=".mvp.presentation.view.implementation.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustPan"
+            android:noHistory="true"
             android:theme="@style/AppTheme.Splash"
-            android:name=".mvp.presentation.view.implementation.activity.SplashActivity">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,32 +26,46 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".mvp.presentation.view.implementation.activity.base.DummyActivity"
-            android:theme="@style/AppTheme.TransparentActivity"
-            android:noHistory="true">
-        </activity>
+        <activity
+            android:name=".mvp.presentation.view.implementation.activity.base.DummyActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.TransparentActivity"></activity>
 
         <activity android:name=".mvp.presentation.view.implementation.activity.TestActivity" />
         <activity android:name=".mvp.presentation.view.implementation.activity.LoginActivity" />
         <activity android:name=".mvp.presentation.view.implementation.activity.HomeActivity" />
 
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".utils.FileProviderGallery"
+            android:authorities="com.vironit.correctapp.utils.FileProviderGallery"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_parths" />
+        </provider>
+
     </application>
 </manifest>

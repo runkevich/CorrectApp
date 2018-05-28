@@ -67,7 +67,9 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         AppLog.logFragment(this);
         View view = inflater.inflate(getLayoutResId(), container, false);
         if (getArguments() != null) {
@@ -80,7 +82,8 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
         AppLog.logFragment(this);
         super.onViewCreated(view, savedInstanceState);
         initViewBeforePresenterAttach();
@@ -149,7 +152,9 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
 
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode,
+                                 int resultCode,
+                                 Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Activity activity = getActivity();
         if (activity != null) {
@@ -160,7 +165,9 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Activity activity = getActivity();
         if (activity != null) {
@@ -210,14 +217,21 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     @Override
-    public void showDialogMessage(@NonNull String message, boolean closable, boolean cancelable) {
+    public void showDialogMessage(@NonNull String message,
+                                  boolean closable,
+                                  boolean cancelable) {
         if (mRootActivityIBaseView != null) {
             mRootActivityIBaseView.showDialogMessage(message, closable,cancelable);
         }
     }
 
     @Override
-    public void showDialogWithOptions(@NonNull String title, @NonNull String message, @NonNull String positiveOptionMessage, @NonNull String negative, @Nullable DialogInterface.OnClickListener positiveListener, @Nullable DialogInterface.OnClickListener negativeListener) {
+    public void showDialogWithOptions(@NonNull String title,
+                                      @NonNull String message,
+                                      @NonNull String positiveOptionMessage,
+                                      @NonNull String negative,
+                                      @Nullable DialogInterface.OnClickListener positiveListener,
+                                      @Nullable DialogInterface.OnClickListener negativeListener) {
         if (mRootActivityIBaseView != null) {
             mRootActivityIBaseView.showDialogWithOptions(title, message, positiveOptionMessage, negative, positiveListener, negativeListener);
         }
@@ -239,12 +253,18 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     @Override
-    public void showMessage(@NonNull String message, boolean closable, @Nullable String actionMessage, @Nullable IActionListener iActionListener) {
+    public void showMessage(@NonNull String message,
+                            boolean closable,
+                            @Nullable String actionMessage,
+                            @Nullable IActionListener iActionListener) {
 
     }
 
     @Override
-    public void showMessage(@NonNull String message, boolean closable, @Nullable String actionMessage, @Nullable View.OnClickListener actionListener) {
+    public void showMessage(@NonNull String message,
+                            boolean closable,
+                            @Nullable String actionMessage,
+                            @Nullable View.OnClickListener actionListener) {
         hideKeyboard();
         hideMessage();
         @Nullable
