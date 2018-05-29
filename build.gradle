@@ -1,7 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+    ext.retrofit2Version = '2.3.0'
+    ext.okhttp3Version = '3.9.0'
+
+    ext.autoValueVersion = '1.4.1'
+    ext.gsonVersion = '2.8.2'
     repositories {
         google()
         jcenter()

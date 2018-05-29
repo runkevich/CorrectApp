@@ -42,6 +42,8 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     @Nullable
     private Snackbar mSnackBar;
 
+
+
     @Inject
     protected ResourcesManager mResourcesManager;
 
@@ -290,6 +292,8 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
 
     @Override
     public void hideProgress() {
-
+        if (mRootActivityIBaseView != null) {
+            mRootActivityIBaseView.hideProgress();
+        }
     }
 }

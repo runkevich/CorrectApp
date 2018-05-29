@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/id_v_activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/id_v_activity_home">
+    android:orientation="vertical">
 
-   <FrameLayout
-       android:id="@+id/frame_layout"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/bottom_navigation">
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation">
 
-   </FrameLayout>
+    </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        app:menu="@menu/my_navigation_items"
-        android:layout_alignParentBottom="true">
-    </android.support.design.widget.BottomNavigationView>
+        app:menu="@menu/my_navigation_items"></android.support.design.widget.BottomNavigationView>
 </RelativeLayout>

@@ -50,7 +50,9 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements I
         return new ProfileFragment();
     }
 
+   // Pair<>
 
+    //Triple<a,b,c>
     @Override
     public void setPhoto(File file) {
         Glide.with(this)

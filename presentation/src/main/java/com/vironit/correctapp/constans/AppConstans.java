@@ -13,4 +13,11 @@ public interface AppConstans {
     String GOOGLE = "GOOGLE";
     String TWITTER = "TWITTER";
 
+    long CONNECT_TIMEOUT_SECONDS = 15;
+    long READ_CONNECT_TIMEOUT_SECONDS = 20;
+    long WRITE_CONNECT_TIMEOUT_SECONDS = 20;
+
+    long CACH_SIZE = 20 * 1024 * 1024;
+
+
 }

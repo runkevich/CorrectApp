@@ -2,13 +2,16 @@ package com.vironit.correctapp.di.components;
 
 
 import com.vironit.correctapp.App;
+import com.vironit.correctapp.di.modules.ApiModule;
 import com.vironit.correctapp.di.modules.AppActivitiesModule;
 import com.vironit.correctapp.di.modules.AppFragmentsModule;
 import com.vironit.correctapp.di.modules.ApplicationModule;
 import com.vironit.correctapp.di.modules.FragmentModule;
 import com.vironit.correctapp.di.modules.IteractorModule;
 import com.vironit.correctapp.di.modules.ManagerModule;
+import com.vironit.correctapp.di.modules.ParseModule;
 import com.vironit.correctapp.di.modules.RepozitoryModule;
+import com.vironit.correctapp.di.modules.RetrofitModule;
 import com.vironit.correctapp.di.modules.SchedulersModule;
 import com.vironit.correctapp.di.modules.SocialNetworkModule;
 import com.vironit.correctapp.mvp.presentation.presenter.ChatPresenter;
@@ -27,7 +30,8 @@ import dagger.Component;
 //предоставляет - собирает
 @Singleton
 @Component(modules = {SchedulersModule.class, RepozitoryModule.class, ManagerModule.class, AppActivitiesModule.class,
-        ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class, FragmentModule.class,AppFragmentsModule.class})
+        ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class, FragmentModule.class,AppFragmentsModule.class,
+        RetrofitModule.class, ApiModule.class, ParseModule.class})
 public interface AppComponent {
 
     @Component.Builder

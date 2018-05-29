@@ -31,7 +31,7 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(),ProfileFragment.newInstance())
+                .replace(getContainerViewId(),NewsFragment.newInstance())
                 .commit();
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
