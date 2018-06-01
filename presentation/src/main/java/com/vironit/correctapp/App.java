@@ -49,13 +49,11 @@ public class App extends Application implements HasActivityInjector, HasServiceI
         return sAppComponent;
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         initDagger2();
         Twitter.initialize(this);
-
     }
 
 
@@ -63,8 +61,6 @@ public class App extends Application implements HasActivityInjector, HasServiceI
         sAppComponent = DaggerAppComponent.builder()
                 .appContext(this)
                 .build();
-
         sAppComponent.inject(this);
     }
-
 }

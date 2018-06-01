@@ -1,9 +1,9 @@
 package com.vironit.correctapp.constans;
 
-public interface AppConstans {
+public interface AppConstants {
 
     long LONG_DOUBLE_BACK_DELAYD = 2000;
-    //TODO permission requestCode
+
     String UI_SCHEDULER = "UI_SCHEDULER";
     String IO_SCHEDULER = "IO_SCHEDULER";
     String COMPUTATION_SCHEDULER = "COMPUTATION_SCHEDULER";
@@ -17,7 +17,8 @@ public interface AppConstans {
     long READ_CONNECT_TIMEOUT_SECONDS = 20;
     long WRITE_CONNECT_TIMEOUT_SECONDS = 20;
 
-    long CACH_SIZE = 20 * 1024 * 1024;
+    long CASH_SIZE = 20 * 1024 * 1024;
 
 
+    int NO_STRING_RES = -1;
 }

@@ -25,7 +25,6 @@ public abstract class ShowDialogUtil {
             return null;
         }
 
-        //activity, R.style.AlertDialogStyle)
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyle))
                 .setTitle(titleText)
                 .setIcon(R.mipmap.ic_launcher_round)
@@ -72,7 +71,6 @@ public abstract class ShowDialogUtil {
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyleSimple))
-                //(activity/*, R.style.AlertDialogStyleSimple*/)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(positiveOptionMessage, positiveListener)

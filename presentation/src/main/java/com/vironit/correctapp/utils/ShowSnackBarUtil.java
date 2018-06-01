@@ -13,7 +13,6 @@ import com.vironit.correctapp.R;
 
 public abstract class ShowSnackBarUtil {
 
-    //rootView
     @Nullable
     public static Snackbar showSnackBar(@Nullable View rootView,
                                         @Nullable Context context,

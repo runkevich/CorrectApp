@@ -12,37 +12,44 @@ import com.vironit.correctapp.mvp.presentation.presenter.base.BasePresenter;
 
 public abstract class AppLog {
 
-    private String APP_TAG = "APP_TAG";
+    private static String APP_TAG = "APP_TAG";
 
     public static void logPresenter(@NonNull BasePresenter presenter) {
-        //TODO
         if (isLogEnabled()) {
-            Log.i("App_Tag", "App_Tag");
+            Log.i(getAppTag(), getInfo(presenter));
         }
     }
 
+    public static void logPresenter(@NonNull BasePresenter presenter,
+                                    @Nullable String message) {
+        if (isLogEnabled()) {
+            Log.i(getAppTag(), message);
+        }
+    }
 
-    public static void logPresenter(@NonNull BasePresenter presenter, String message) {
-        //TODO
+    public static void logPresenter(@NonNull BasePresenter presenter,
+                                    @Nullable String message,
+                                    @Nullable Throwable throwable) {
         if (isLogEnabled()) {
-            Log.i("App_Tag", message);
+            Log.i(getAppTag(), createMessageFromThrowableWithMessage(message, createMessageFromThrowable(throwable)));
         }
     }
-    public static void logPresenter(@NonNull BasePresenter presenter,Throwable throwable) {
-        //TODO
-        if (isLogEnabled()) {
-            Log.i("App_Tag", throwable.getMessage());
-        }
+
+    @NonNull
+    private static String createMessageFromThrowableWithMessage(@Nullable String message,
+                                                                @Nullable String messageFromThrowable) {
+        return messageFromThrowable + " " + message;
     }
+
 
     public static void logActivity(@NonNull Activity activity) {
 
         if (isLogEnabled()) {
-            Log.i("App_Tag", "App_Tag");
+            Log.i(getAppTag(), getInfo(activity));
         }
     }
 
-   public static void logObject(Class clazz, @Nullable String message) {
+    public static void logObject(Class clazz, @Nullable String message) {
         if (isLogEnabled()) {
             Log.i(getAppTag(), clazz.getSimpleName() + "." + getMethodName() + " " + createMessage(message));
         }
@@ -50,25 +57,26 @@ public abstract class AppLog {
 
     @NonNull
     private static String createMessage(@Nullable String message) {
-        return !TextUtils.isEmpty(message) ? message : "thththyhy";
-
+        return !TextUtils.isEmpty(message) ? message : "TROLOLO";
     }
 
     private static boolean isLogEnabled() {
-
-        return BuildConfig.DEBUG; //из своего проекта
+        return BuildConfig.DEBUG;
     }
 
     private static String getMethodName() {
         try {
             return Thread.currentThread().getStackTrace()[4].getMethodName();
-
         } catch (Exception e) {
-
             return "unknownMethod";
-
         }
+    }
 
+    @NonNull
+    private static String createMessageFromThrowable(@Nullable Throwable throwable) {
+        return throwable != null
+                ? (createMessageFromThrowableWithMessage(createMessage(throwable.getMessage()), throwable.getClass().getName()))
+                : "nullable_throwable";
     }
 
     private static String getClassName(Object object) {
@@ -80,10 +88,6 @@ public abstract class AppLog {
         return "Class" + getClassName(object) + "Method: " + getMethodName();
     }
 
-    private String getAPP_TAG() {
-        return APP_TAG;
-    }
-
     public static void logFragment(@NonNull Fragment fragment) {
         if (isLogEnabled()) {
             Log.i(getAppTag(), "MY_APP_TAG");
@@ -91,12 +95,8 @@ public abstract class AppLog {
     }
 
     private static String getAppTag() {
-        return "MY_APP_TAG";
+        return APP_TAG;
     }
-
-//    private static String getInfo(Object o){
-//        return "Class: "+getClassName(o)+"."+getMethodName() + "()";
-//    }
 }
 
 

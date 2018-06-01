@@ -10,6 +10,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "NEWS_API_KEY", NEWS_API_KEY
+        buildConfigField "String", "IMAGE_API_KEY", IMAGE_API_KEY
+        buildConfigField "String", "API_URL_IMAGE", API_URL_IMAGE
     }
     buildTypes {
         release {
@@ -65,12 +67,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
-//    implementation  'com.squareup.retrofit2:retrofit:2.3.0'
-//    implementation   'com.google.code.gson:gson:2.8.2'
-//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-//    implementation: 'com.squareup.okhttp3:okhttp:3.9.0'
-//    implementation: 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-
     implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2Version"
@@ -78,5 +74,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
     implementation "com.google.code.gson:gson:$gsonVersion"
 
+
+    implementation 'com.cloudinary:cloudinary-android:1.24.0'
 
 }
