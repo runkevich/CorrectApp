@@ -30,25 +30,29 @@ import dagger.Component;
 //предоставляет - собирает
 @Singleton
 @Component(modules = {SchedulersModule.class, RepozitoryModule.class, ManagerModule.class, AppActivitiesModule.class,
-        ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class, FragmentModule.class,AppFragmentsModule.class,
+        ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class, FragmentModule.class, AppFragmentsModule.class,
         RetrofitModule.class, ApiModule.class, ParseModule.class})
 public interface AppComponent {
 
-    @Component.Builder
-    interface Builder{
+    @Component.Builder interface Builder {
         @BindsInstance
         Builder appContext(App app);
-        AppComponent build();
 
+        AppComponent build();
     }
 
     void inject(App app);
+
     void inject(TestPresenter testPresenter);
+
     void inject(LoginPresenter loginPresenter);
 
     void inject(ChatPresenter chatPresenter);
+
     void inject(ProfilePresenter profilePresenter);
+
     void inject(NewsPresenter newsPresenter);
+
     void inject(HomePresenter homePresenter);
 
 

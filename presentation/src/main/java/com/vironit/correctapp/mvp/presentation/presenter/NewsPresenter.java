@@ -12,7 +12,6 @@ import javax.inject.Inject;
 @InjectViewState
 public class NewsPresenter extends BaseAppPresenter<INewsView> {
 
-
     @Inject
     NewsInteractor mNewsInteractor;
 
@@ -34,6 +33,7 @@ public class NewsPresenter extends BaseAppPresenter<INewsView> {
                 })
                 .doFinally(() -> getViewState().hideProgress())
                 .subscribe(list -> AppLog.logPresenter(this,"OOOOOKKKKK"),
-                        throwable -> AppLog.logPresenter(this,throwable)));
+                        this));
+        //throwable -> AppLog.logPresenter(this))
     }
 }

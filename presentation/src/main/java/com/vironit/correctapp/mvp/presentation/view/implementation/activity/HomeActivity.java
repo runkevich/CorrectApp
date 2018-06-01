@@ -21,10 +21,8 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
     @InjectPresenter
     HomePresenter mHomePresenter;
 
-
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigation;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

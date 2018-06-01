@@ -12,5 +12,4 @@ public class DummyActivity extends MvpAppCompatActivity {
         super.onCreate(savedInstanceState);
         new Handler().postDelayed(() -> this.finish(), 500);
     }
-
 }

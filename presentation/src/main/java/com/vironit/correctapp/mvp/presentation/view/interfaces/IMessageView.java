@@ -24,6 +24,5 @@ public interface IMessageView {
     interface IActionListener{
 
         void onActionChoosing();
-
     }
 }

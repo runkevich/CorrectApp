@@ -23,7 +23,7 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 import com.vironit.correctapp.App;
-import com.vironit.correctapp.constans.AppConstans;
+import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.ILoginView;
@@ -57,7 +57,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
     }
 
     public void clickOnFacebook (@NonNull Activity activity){
-        selectedLoginButton = AppConstans.FACEBOOK;
+        selectedLoginButton = AppConstants.FACEBOOK;
         LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile"));
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -82,14 +82,14 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
 
     public void clickOnGoogle (@NonNull Activity activity ){
 
-        selectedLoginButton = AppConstans.GOOGLE;
+        selectedLoginButton = AppConstants.GOOGLE;
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        activity.startActivityForResult(signInIntent, AppConstans.RC_SIGN_IN);
+        activity.startActivityForResult(signInIntent, AppConstants.RC_SIGN_IN);
 
     }
 
     public void clickOnTwitter (@NonNull Activity activity ){
-        selectedLoginButton = AppConstans.TWITTER;
+        selectedLoginButton = AppConstants.TWITTER;
         mTwitterAuthClient.authorize(activity, new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -119,14 +119,14 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
     public void onActivityResult(int requestCode, int resultCode, Intent data, @NonNull BaseActivity activity) {
         super.onActivityResult(requestCode, resultCode, data, activity);
         switch (selectedLoginButton) {
-            case AppConstans.TWITTER:
+            case AppConstants.TWITTER:
                 mTwitterAuthClient.onActivityResult(requestCode, resultCode, data);
                 break;
-            case AppConstans.FACEBOOK:
+            case AppConstants.FACEBOOK:
                 mCallbackManager.onActivityResult(requestCode, resultCode, data);
                 break;
-            case AppConstans.GOOGLE:
-                if (requestCode == AppConstans.RC_SIGN_IN) {
+            case AppConstants.GOOGLE:
+                if (requestCode == AppConstants.RC_SIGN_IN) {
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                     handleSignInResult(task);
                 }

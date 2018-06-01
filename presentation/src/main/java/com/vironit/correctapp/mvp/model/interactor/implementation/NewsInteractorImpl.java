@@ -3,6 +3,7 @@ package com.vironit.correctapp.mvp.model.interactor.implementation;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.NewsInteractor;
 import com.vironit.correctapp.mvp.model.repository.dto.Data;
 import com.vironit.correctapp.mvp.model.repository.interfaces.NewsRepository;
+import com.vironit.correctapp.utils.ErrorHandlerUtil;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,7 @@ public class NewsInteractorImpl implements NewsInteractor {
 
     @Override
     public Single<Data> getNews() {
-        return mNewsRepository.getNews("ru");
+        return mNewsRepository.getNews("ru")
+                .onErrorResumeNext(ErrorHandlerUtil::defaultHandle);
     }
 }

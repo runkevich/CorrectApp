@@ -10,5 +10,4 @@ public interface ResourcesManager {
 
     @NonNull
     String getString(@StringRes int resId, @NonNull Object... formatArgs);
-
 }

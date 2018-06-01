@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 import com.arellomobile.mvp.MvpPresenter;
-import com.vironit.correctapp.constans.AppConstans;
+import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.manager.interfaces.ResourcesManager;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IBaseView;
@@ -23,20 +23,21 @@ public abstract class BasePresenter<View extends IBaseView> extends MvpPresenter
 
     private final CompositeDisposable mLiteCompositeDisposable = new CompositeDisposable();
     private final CompositeDisposable mHardCompositeDisposable = new CompositeDisposable();
+
     @Inject
-    @Named(AppConstans.UI_SCHEDULER)
+    @Named(AppConstants.UI_SCHEDULER)
     protected Scheduler mUIScheduler;
 
     @Inject
-    @Named(AppConstans.IO_SCHEDULER)
+    @Named(AppConstants.IO_SCHEDULER)
     protected Scheduler mIOScheduler;
 
     @Inject
-    @Named(AppConstans.COMPUTATION_SCHEDULER)
+    @Named(AppConstants.COMPUTATION_SCHEDULER)
     protected Scheduler mComputationScheduler;
 
     @Inject
-    protected ResourcesManager mResourcesManager;
+     ResourcesManager mResourcesManager;
 
     @Override
     public void attachView(View view) {

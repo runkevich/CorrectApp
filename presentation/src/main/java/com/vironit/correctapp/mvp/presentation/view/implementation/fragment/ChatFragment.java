@@ -25,5 +25,4 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
     public static ChatFragment newInstance(){
         return new ChatFragment();
     }
-
 }

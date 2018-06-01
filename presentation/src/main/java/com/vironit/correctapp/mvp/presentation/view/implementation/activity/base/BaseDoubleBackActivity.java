@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.vironit.correctapp.R;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 
-import static com.vironit.correctapp.constans.AppConstans.LONG_DOUBLE_BACK_DELAYD;
+import static com.vironit.correctapp.constans.AppConstants.LONG_DOUBLE_BACK_DELAYD;
 
 public abstract class BaseDoubleBackActivity<P extends BaseAppPresenter> extends BaseActivity<P> {
 

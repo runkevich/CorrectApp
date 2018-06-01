@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.vironit.correctapp.R;
-import com.vironit.correctapp.constans.AppConstans;
+import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.manager.interfaces.ResourcesManager;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IBaseView;
@@ -35,15 +35,15 @@ import io.reactivex.Scheduler;
 public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCompatActivity implements IBaseView {
 
     @Inject
-    @Named(AppConstans.UI_SCHEDULER)
+    @Named(AppConstants.UI_SCHEDULER)
     protected Scheduler mUIScheduler;
 
     @Inject
-    @Named(AppConstans.IO_SCHEDULER)
+    @Named(AppConstants.IO_SCHEDULER)
     protected Scheduler mIOScheduler;
 
     @Inject
-    @Named(AppConstans.COMPUTATION_SCHEDULER)
+    @Named(AppConstants.COMPUTATION_SCHEDULER)
     protected Scheduler mComputationScheduler;
 
     @Inject
@@ -74,15 +74,12 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
             if (getIntent().getExtras() != null) {
                 initFromIntentExtras(getIntent().getExtras());
             }
-
         }
-
         initBeforeLayoutAttach();
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
         initViewBeforeAttached();
         getMvpDelegate().onAttach();
-
     }
 
     @Override
@@ -138,27 +135,20 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
     }
 
     protected void initFromIntentExtras(@NonNull Bundle bundle) {
-
-        //TODO
-
+        //TODO initFromIntentExtras
     }
 
     void initViewBeforeAttached() {
-
-        //TODO
-
+        //TODO initViewBeforeAttached
     }
 
     void initBeforeLayoutAttach() {
-
-        //TODO
-
+        //TODO initBeforeLayoutAttach
     }
 
-    protected  String getResourseString(@StringRes int stringId) {
+    protected String getResourseString(@StringRes int stringId) {
         return mResourceManager.getString(stringId);
     }
-
 
     @Override
     public void hideKeyboard() {
@@ -177,7 +167,6 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         }
     }
 
-
     @Override
     public void showProgress(@NonNull String message) {
         //String titleText = getResources().getString(R.string.progress_title);
@@ -194,9 +183,7 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
 
     @Override
     public void showAutoClosableMessage(@NonNull String message) {
-
         showMessage(message, true, null, (View.OnClickListener) null);
-
     }
 
     @Override
@@ -204,8 +191,6 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         String title = getResources().getString(R.string.app_name);
         showDialogWithOptions(title, message, null,
                 null, null, null);
-
-
     }
 
     @Override
@@ -219,9 +204,7 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         hideDialogMessage();
         mAlertDialog = ShowDialogUtil.showMessageDialog(this, title, message, positiveOptionMessage, negative,
                 positiveListener, negativeListener, false);
-
     }
-
 
     @Override
     public void hideDialogMessage() {
@@ -229,7 +212,6 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         if (mAlertDialog != null && mAlertDialog.isShowing()) {
             mAlertDialog.dismiss();
         }
-
     }
 
     @Override
@@ -237,7 +219,6 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         if (mSnackbar != null) {
             mSnackbar.dismiss();
         }
-
     }
 
     @Override
@@ -257,6 +238,5 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         /*@BaseTransientBottomBar.Duration */
         int duration = closable ? BaseTransientBottomBar.LENGTH_SHORT : BaseTransientBottomBar.LENGTH_INDEFINITE;
         mSnackbar = ShowSnackBarUtil.showSnackBar(rootView, this, message, actionMessage, actionListener, duration);
-
     }
 }

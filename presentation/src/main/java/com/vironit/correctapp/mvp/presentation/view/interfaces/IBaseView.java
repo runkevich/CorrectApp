@@ -19,5 +19,4 @@ public interface IBaseView  extends MvpView,IMessageView,IProgressView {
                      boolean closable,
                      @Nullable String actionMessage,
                      @Nullable View.OnClickListener actionListener);
-
 }

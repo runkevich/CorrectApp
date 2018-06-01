@@ -42,21 +42,18 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
     @Nullable
     private Snackbar mSnackBar;
 
-
-
     @Inject
     protected ResourcesManager mResourcesManager;
 
     @LayoutRes
     public abstract int getLayoutResId();
 
-
     @Override
     public void onAttach(Context context) {
         AppLog.logFragment(this);
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
-        if (context instanceof IBaseView){
+        if (context instanceof IBaseView) {
             mRootActivityIBaseView = (IBaseView) context;
         }
     }
@@ -80,7 +77,6 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
         initBeforeLayout();
         ButterKnife.bind(this, view);
         return view;
-
     }
 
     @Override
@@ -124,7 +120,9 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
         hideDialogMessage();
         hideMessage();
         super.onDestroyView();
-    } @Override
+    }
+
+    @Override
     public void onDetach() {
         AppLog.logFragment(this);
         mRootActivityIBaseView = null;
@@ -149,9 +147,6 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
         AppLog.logFragment(this);
         super.onDestroy();
     }
-
-
-
 
     @Override
     public void onActivityResult(int requestCode,
@@ -223,7 +218,7 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
                                   boolean closable,
                                   boolean cancelable) {
         if (mRootActivityIBaseView != null) {
-            mRootActivityIBaseView.showDialogMessage(message, closable,cancelable);
+            mRootActivityIBaseView.showDialogMessage(message, closable, cancelable);
         }
     }
 
@@ -244,7 +239,6 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
         if (mRootActivityIBaseView != null) {
             mRootActivityIBaseView.hideDialogMessage();
         }
-
     }
 
     @Override
@@ -259,7 +253,6 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
                             boolean closable,
                             @Nullable String actionMessage,
                             @Nullable IActionListener iActionListener) {
-
     }
 
     @Override

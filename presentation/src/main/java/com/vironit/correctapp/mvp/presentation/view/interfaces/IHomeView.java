@@ -11,5 +11,4 @@ public interface IHomeView extends IBaseView {
     void showChat();
 
     void showProfile();
-
 }

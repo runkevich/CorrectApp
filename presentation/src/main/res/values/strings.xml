@@ -31,4 +31,6 @@
     <string name="fb_login_protocol_scheme">fb196125281110841</string>
 
     <string name="server_client_id">234475339221-n0lc37q7hqpj1all6am2do4giuvso5cp.apps.googleusercontent.com</string>
+    <string name="unknown_error">uknown error</string>
+    <string name="no_network">no network</string>
 </resources>

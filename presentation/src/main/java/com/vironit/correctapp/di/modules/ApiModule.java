@@ -9,11 +9,10 @@ import dagger.Provides;
 import retrofit2.Retrofit;
 
 @Module
-public class ApiModule  {
+public class ApiModule {
 
-    @Provides
-    @Singleton
-    ApiInterface provideInterface(Retrofit retrofit){
+    @Provides @Singleton
+    ApiInterface provideInterface(Retrofit retrofit) {
         return retrofit.create(ApiInterface.class);
     }
 }

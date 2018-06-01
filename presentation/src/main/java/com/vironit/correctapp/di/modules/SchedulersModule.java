@@ -1,6 +1,6 @@
 package com.vironit.correctapp.di.modules;
 
-import com.vironit.correctapp.constans.AppConstans;
+import com.vironit.correctapp.constans.AppConstants;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -16,14 +16,14 @@ public class SchedulersModule {
 
     @Provides
     @Singleton
-    @Named(AppConstans.COMPUTATION_SCHEDULER)
+    @Named(AppConstants.COMPUTATION_SCHEDULER)
     Scheduler provideCompitationScheduler(){
         return Schedulers.computation();
    }
 
    @Provides
    @Singleton
-   @Named(AppConstans.IO_SCHEDULER)
+   @Named(AppConstants.IO_SCHEDULER)
     Scheduler provideIOScheduler(){
        return Schedulers.io();
     }
@@ -31,7 +31,7 @@ public class SchedulersModule {
 
     @Provides
     @Singleton
-    @Named(AppConstans.UI_SCHEDULER)
+    @Named(AppConstants.UI_SCHEDULER)
     Scheduler provideUIScheduler(){
         return AndroidSchedulers.mainThread();
     }

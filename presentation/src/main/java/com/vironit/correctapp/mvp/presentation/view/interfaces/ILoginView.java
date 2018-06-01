@@ -14,6 +14,4 @@ public interface ILoginView extends IBaseView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void goToHomeActivity();
-
-
 }

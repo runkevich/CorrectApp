@@ -38,10 +38,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         bTwitter.setOnClickListener(v->mLoginPresenter.clickOnTwitter(this));
         bFacebook.setOnClickListener(v->mLoginPresenter.clickOnFacebook(this));
         bGoogle.setOnClickListener(v->mLoginPresenter.clickOnGoogle(this));
-
     }
-
-    //?
 
     public static void start(@Nullable Context context) {
         if (context != null) {
@@ -63,7 +60,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     protected LoginPresenter getPresenter() {
         return mLoginPresenter;
     }
-
 
     @Override
     public void showMessage(@NonNull String message,

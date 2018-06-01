@@ -1,6 +1,6 @@
 package com.vironit.correctapp.mvp.model.repository.implementation;
 
-import com.vironit.correctapp.constans.AppConstans;
+import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.repository.ApiInterface;
 import com.vironit.correctapp.mvp.model.repository.dto.Data;
 import com.vironit.correctapp.mvp.model.repository.interfaces.NewsRepository;
@@ -17,7 +17,8 @@ public class NewsRepositoryImpl implements NewsRepository {
     private final Scheduler mIOScheduler;
 
     @Inject
-    public NewsRepositoryImpl(ApiInterface mApiInterface,@Named(AppConstans.IO_SCHEDULER) Scheduler mIOScheduler) {
+    public NewsRepositoryImpl(ApiInterface mApiInterface,
+                              @Named(AppConstants.IO_SCHEDULER) Scheduler mIOScheduler) {
         this.mApiInterface = mApiInterface;
         this.mIOScheduler = mIOScheduler;
     }

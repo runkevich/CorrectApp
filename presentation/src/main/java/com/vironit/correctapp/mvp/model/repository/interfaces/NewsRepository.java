@@ -7,4 +7,5 @@ import io.reactivex.Single;
 public interface NewsRepository {
 
     Single<Data> getNews(String countryCode);
+
 }

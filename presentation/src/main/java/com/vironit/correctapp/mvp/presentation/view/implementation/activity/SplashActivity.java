@@ -12,8 +12,6 @@ public class SplashActivity extends MvpAppCompatActivity{
         super.onCreate(savedInstanceState);
         //defaultLoginTwitter();
         startActivity(new Intent(this, LoginActivity.class));
-
-
     }
 
 //    private void defaultLoginTwitter() {
