@@ -14,21 +14,32 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.vironit.correctapp.App;
+import com.vironit.correctapp.mvp.model.interactor.interfaces.ImageInteractor;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IProfileView;
+import com.vironit.correctapp.utils.AppLog;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 @InjectViewState
 public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
+
+    @Inject
+    ImageInteractor mImageInteractor;
+
     public ProfilePresenter() {
         App.getsAppComponent().inject(this);
     }
 
     public static final int GALLERY_REQUEST_CODE = 123;
     public static final int CAMERA_REQUEST_CODE = 321;
-
 
     public void startGallery(@NonNull Fragment fragment) {
         RxPermissions rxPermissions = new RxPermissions(fragment.getActivity());
@@ -80,9 +91,7 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             fragment.startActivityForResult(intent, CAMERA_REQUEST_CODE);
-
         }
-
     }
 
     public File getCameraFile(@NonNull Activity activity) {
@@ -92,7 +101,6 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
             //приватная аудитория - то где в телеяоне хранится
             root = activity.getFilesDir();
         }
-
         File myDir = new File(root.getAbsoluteFile() + "/myDir");//     /Android/package - место сохранения - так принято
         if (!myDir.exists()) {
             myDir.mkdir();
@@ -116,12 +124,10 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
                 }
             }
             //+ case для галереи
-
             case GALLERY_REQUEST_CODE: {
                 Uri uri = data.getData();
 
                 //Cursor - это что-то вроде arraylist с Hashmap
-
                 Cursor cursor = activity.getApplicationContext().getContentResolver()
                         .query(uri, new String[]{MediaStore.Images.Media.DATA},
                                 null, null, null);
@@ -135,12 +141,10 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
                 String file = cursor.getString(index);
 
                 //проверить String file на ноль
-
                 cursor.close();
                 return new File(file);
             }
         }
-
         return null;
     }
 
@@ -149,8 +153,32 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
         super.onActivityResult(requestCode, resultCode, data, activity);
         if (resultCode == Activity.RESULT_OK) {
             File file = getImageFromResult(activity, requestCode, resultCode, data);
+
             if (file != null) {
                 getViewState().setPhoto(file);
+
+
+
+                RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+                RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+                addLiteDisposable(mImageInteractor.uploadImage(body, name)
+                        .observeOn(mUIScheduler)
+                        .doOnSuccess(list -> {
+                        })
+                        .subscribe(list -> AppLog.logPresenter(this,"OOOOOKKKKK"),
+                                this));
+
+//                retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body, name);
+//                req.enqueue(new Callback<ResponseBody>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) { }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                        t.printStackTrace();
+//                    }
+//                });
             }
         }
     }

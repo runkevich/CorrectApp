@@ -16,15 +16,12 @@ import butterknife.OnClick;
 
 public class ProfileFragment extends BaseFragment<ProfilePresenter> implements IProfileView {
 
-
     @InjectPresenter
     ProfilePresenter mProfilePresenter;
-
 
     @OnClick(R.id.btn_load_photo_camera)
     void photo1(){
       mProfilePresenter.startCamera(this);
-     // mProfilePresenter.getCameraFile(this);
     }
 
     @OnClick(R.id.btn_load_photo_gallery)
@@ -34,7 +31,6 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements I
 
     @BindView(R.id.image_profile)
     ImageView mProfilePhoto;
-
 
     @Override
     protected ProfilePresenter getPresenter() {
@@ -50,9 +46,6 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements I
         return new ProfileFragment();
     }
 
-   // Pair<>
-
-    //Triple<a,b,c>
     @Override
     public void setPhoto(File file) {
         Glide.with(this)
