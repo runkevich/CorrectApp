@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vironit.correctapp.R;
@@ -29,7 +30,7 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(),NewsFragment.newInstance())
+                .replace(getContainerViewId(),ProfileFragment.newInstance())
                 .commit();
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -65,9 +66,10 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
 
     @Override
     public void showNews() {
+        Fragment fragment = new NewsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(), NewsFragment.newInstance())
+                .replace(getContainerViewId(), fragment)
                 .commit();
     }
 
@@ -86,7 +88,6 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
                 .replace(getContainerViewId(), ProfileFragment.newInstance())
                 .commit();
     }
-
 
     @Override
     public void showMessage(@NonNull String message,

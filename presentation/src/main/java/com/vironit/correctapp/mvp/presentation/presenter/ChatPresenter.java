@@ -7,9 +7,19 @@ import com.vironit.correctapp.mvp.presentation.view.interfaces.IChatView;
 
 @InjectViewState
 public class ChatPresenter extends BaseAppPresenter<IChatView>{
+
     public ChatPresenter() {
         App.getsAppComponent().inject(this);
     }
 
 
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        showMaps();
+    }
+
+    private void showMaps() {
+        getViewState().showMaps();
+    }
 }

@@ -15,4 +15,8 @@ public class ApiModule {
     ApiInterface provideInterface(Retrofit retrofit) {
         return retrofit.create(ApiInterface.class);
     }
+//    @Provides @Singleton
+//    ApiInterfaceCloudinary provideInterfacee(Retrofit retrofit) {
+//        return retrofit.create(ApiInterfaceCloudinary.class);
+//    }
 }

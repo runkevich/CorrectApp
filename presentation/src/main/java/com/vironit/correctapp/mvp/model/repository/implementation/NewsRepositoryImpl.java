@@ -24,7 +24,7 @@ public class NewsRepositoryImpl implements NewsRepository {
     }
 
     @Override
-    public Single<Data> getNews(String countryCode) {
+    public Single<Data> getNews(String countryCode, int page, int pageSize) {
         return mApiInterface.getNews(countryCode)
                 .subscribeOn(mIOScheduler);
     }

@@ -6,5 +6,5 @@ import io.reactivex.Single;
 
 public interface NewsInteractor {
 
-    Single<Data> getNews();
+    Single<Data> getNews(String country, int page, int pageSize);
 }

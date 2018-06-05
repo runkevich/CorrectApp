@@ -24,6 +24,4 @@ public interface AppActivitiesModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = ActivityModule.class)
     HomeActivity homeActivityInjector();
-
-
 }

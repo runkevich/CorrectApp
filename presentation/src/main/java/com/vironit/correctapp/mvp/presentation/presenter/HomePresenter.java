@@ -7,25 +7,20 @@ import com.vironit.correctapp.mvp.presentation.view.interfaces.IHomeView;
 
 @InjectViewState
 public class HomePresenter extends BaseAppPresenter<IHomeView> {
-    public HomePresenter() {
 
+    public HomePresenter() {
         App.getsAppComponent().inject(this);
     }
 
-
     public void showProfile() {
-
         getViewState().showProfile();
     }
 
     public void showNews(){
-
         getViewState().showNews();
-
     }
-     public void showChat(){
 
+    public void showChat(){
         getViewState().showChat();
-
      }
 }

@@ -41,7 +41,6 @@ public abstract class AppLog {
         return messageFromThrowable + " " + message;
     }
 
-
     public static void logActivity(@NonNull Activity activity) {
 
         if (isLogEnabled()) {
@@ -49,9 +48,21 @@ public abstract class AppLog {
         }
     }
 
+    public static void logObject(@NonNull Object object) {
+        if (isLogEnabled()) {
+            Log.i(getAppTag(), getInfo(object));
+        }
+    }
+
     public static void logObject(Class clazz, @Nullable String message) {
         if (isLogEnabled()) {
             Log.i(getAppTag(), clazz.getSimpleName() + "." + getMethodName() + " " + createMessage(message));
+        }
+    }
+
+    public static void logObject(@NonNull Object object, String message, Exception exception) {
+        if (isLogEnabled()) {
+            Log.i(getAppTag(), getInfo(object));
         }
     }
 

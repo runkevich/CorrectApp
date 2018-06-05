@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.vironit.correctapp.App;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.ImageInteractor;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
+import com.vironit.correctapp.mvp.presentation.view.implementation.activity.CustomView;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IProfileView;
 import com.vironit.correctapp.utils.AppLog;
@@ -33,6 +35,8 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
 
     @Inject
     ImageInteractor mImageInteractor;
+
+    private String selectedAPI = "";
 
     public ProfilePresenter() {
         App.getsAppComponent().inject(this);
@@ -142,6 +146,7 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
 
                 //проверить String file на ноль
                 cursor.close();
+
                 return new File(file);
             }
         }
@@ -153,32 +158,20 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
         super.onActivityResult(requestCode, resultCode, data, activity);
         if (resultCode == Activity.RESULT_OK) {
             File file = getImageFromResult(activity, requestCode, resultCode, data);
-
             if (file != null) {
+                CustomView.isPictire = true;
+                CustomView.d = Drawable.createFromPath(file.getPath());
+
                 getViewState().setPhoto(file);
 
-
-
-                RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+                RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
-                RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+                RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), "upload_test");
+
                 addLiteDisposable(mImageInteractor.uploadImage(body, name)
                         .observeOn(mUIScheduler)
-                        .doOnSuccess(list -> {
-                        })
                         .subscribe(list -> AppLog.logPresenter(this,"OOOOOKKKKK"),
                                 this));
-
-//                retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body, name);
-//                req.enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) { }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                        t.printStackTrace();
-//                    }
-//                });
             }
         }
     }

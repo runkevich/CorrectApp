@@ -14,7 +14,7 @@
         <item name="android:navigationBarColor" tools:targetApi="21">@color/color_end_dark</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="actionMenuTextColor">@color/colorPrimary</item>
-        <item name="android:windowBackground">@color/color_window_background</item>
+        <item name="android:windowBackground">@drawable/bg_primary_gradient</item>
     </style>
 
     <style name="AppTheme.Splash">

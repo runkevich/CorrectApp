@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/default_padding"
     android:orientation="vertical">
 
     <LinearLayout
@@ -25,21 +26,26 @@
             <!--android:layout_height="100dp"-->
             <!--android:layout_gravity="center"-->
             <!--android:layout_marginTop="10dp"-->
+            <!--android:background=""-->
             <!--tools:src="@mipmap/twitter" />-->
         <Button
             android:id="@+id/btn_load_photo_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_selector"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:padding="15dp"
             android:text="Загрузить фото  камеры" />
 
         <Button
             android:id="@+id/btn_load_photo_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_selector"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:padding="15dp"
             android:text="Загрузить фото с галереи" />
 
         <TextView

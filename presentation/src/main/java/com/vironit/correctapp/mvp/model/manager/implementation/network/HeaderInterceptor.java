@@ -24,5 +24,4 @@ public class HeaderInterceptor implements Interceptor {
         mBuilder.header("Authorization","Bearer "+ BuildConfig.NEWS_API_KEY);
         return chain.proceed(mBuilder.build());
     }
-
 }

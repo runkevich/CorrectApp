@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_v_activity_login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/default_2_padding"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +40,7 @@
                 android:id="@+id/b_singin_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+               android:layout_marginRight="@dimen/default_2_padding"
                 android:background="@drawable/button_selector"
                 android:text="Sing in" />
 
@@ -47,41 +48,37 @@
                 android:id="@+id/b_singup_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:background="@drawable/button_selector"
                 android:text="Sing up" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/custom_login_button_twitter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@mipmap/twitter" />
+
+            <Button
+                android:id="@+id/custom_login_button_facebook"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@mipmap/facebook" />
+
+            <Button
+                android:id="@+id/custom_login_button_google"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@mipmap/google" />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/custom_login_button_twitter"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@mipmap/twitter" />
-
-        <Button
-            android:id="@+id/custom_login_button_facebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@mipmap/facebook" />
-
-        <Button
-            android:id="@+id/custom_login_button_google"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@mipmap/google" />
-    </LinearLayout>
-
-
 </LinearLayout>

@@ -25,6 +25,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
+    public static String apiBaseUrl = BuildConfig.API_URL_IMAGE;
+
     @Provides @Singleton
     Cache provideCache(Context context) {
         File file = new File(context.getCacheDir(), "RESPONSE");
@@ -65,10 +67,14 @@ public class RetrofitModule {
                 .client(okHttpClient)
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .addConverterFactory(gsonConverterFactory)
-                .baseUrl(BuildConfig.API_URL_IMAGE)
+                .baseUrl(BuildConfig.API_URL)
                 .build();
     }
 
+    public static String changeApiBaseUrl(String newApiBaseUrl) {
+        apiBaseUrl = newApiBaseUrl;
+        return apiBaseUrl;
+    }
 
     @Provides @Singleton
     RxJava2CallAdapterFactory rxJava2CallAdapterFactory() {

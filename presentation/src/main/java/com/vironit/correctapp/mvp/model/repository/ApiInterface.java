@@ -19,7 +19,7 @@ public interface ApiInterface {
 
     @Multipart
     @POST("/")
-    Single<ResponseBody> uploadImage(@Part MultipartBody.Part image, @Part("name") RequestBody name);
-    //https://res.cloudinary.com/demo/image/ - сайт
-    // Completable uploadImage(@Body String image);
+    Single<ResponseBody> uploadImage(@Part MultipartBody.Part image,
+                                     @Part("name") RequestBody name);
+    //api, timestamp, sha1
 }

@@ -36,6 +36,7 @@ public abstract class ShowDialogUtil {
         if (window != null) {
             window.setLayout(activity.getResources().getDimensionPixelSize(R.dimen.progress_dialog_width),
                     ViewGroup.LayoutParams.WRAP_CONTENT);
+            window.setBackgroundDrawableResource(R.drawable.dialog_shape);
         }
         materialDialog.setCanceledOnTouchOutside(false);
         materialDialog.setCancelable(false);

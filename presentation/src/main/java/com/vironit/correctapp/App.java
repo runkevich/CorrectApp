@@ -56,7 +56,6 @@ public class App extends Application implements HasActivityInjector, HasServiceI
         Twitter.initialize(this);
     }
 
-
     private void initDagger2() {
         sAppComponent = DaggerAppComponent.builder()
                 .appContext(this)

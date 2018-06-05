@@ -8,7 +8,7 @@
     <color name="color_gray_light">#a7a3a4</color>
     <color name="color_primary_text">#dfdfdf</color>
     <color name="color_white">#ffffff</color>
-    <color name="color_start_light">#5167e4</color>
-    <color name="color_end_dark">#25328b</color>
+    <color name="color_start_light">#919acf</color>
+    <color name="color_end_dark">#6a7094</color>
     <color name="color_window_background">#dcdcdc</color>
 </resources>

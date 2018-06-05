@@ -33,4 +33,6 @@
     <string name="server_client_id">234475339221-n0lc37q7hqpj1all6am2do4giuvso5cp.apps.googleusercontent.com</string>
     <string name="unknown_error">uknown error</string>
     <string name="no_network">no network</string>
+    <string name="error_news">Error with show news</string>
+    <string name="small_string">ololo</string>
 </resources>

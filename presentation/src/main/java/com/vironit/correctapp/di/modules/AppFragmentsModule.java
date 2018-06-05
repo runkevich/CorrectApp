@@ -23,6 +23,4 @@ public interface AppFragmentsModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = ActivityModule.class)
     ChatFragment chatFragmentInjector();
-
-
 }
