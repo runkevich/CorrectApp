@@ -47,7 +47,8 @@ public class NewsAdapter extends BaseRecyclerViewAdapter<Article,NewsAdapter.Vie
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         AppLog.logObject(this);
-        Article article = getData().get(position);
+        Article article = null
+                /*= getData().get(position)*/;
         holder.mSourceName.setText(article.getSource().getName());
         Glide.with(mContext)
                 .load(article.getUrlToImage())
@@ -83,3 +84,4 @@ public class NewsAdapter extends BaseRecyclerViewAdapter<Article,NewsAdapter.Vie
         }
     }
 }
+//stableIds

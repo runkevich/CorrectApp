@@ -12,6 +12,8 @@ android {
         buildConfigField "String", "NEWS_API_KEY", NEWS_API_KEY
         buildConfigField "String", "IMAGE_API_KEY", IMAGE_API_KEY
         buildConfigField "String", "API_URL_IMAGE", API_URL_IMAGE
+        buildConfigField "String", "IMAGE_SECRET_KEY", IMAGE_SECRET_KEY
+        buildConfigField "int", "DATABASE_VERSION", DATABASE_VERSION
     }
     buildTypes {
         release {
@@ -76,4 +78,15 @@ dependencies {
 
     implementation 'com.cloudinary:cloudinary-android:1.24.0'
     implementation "com.google.android.gms:play-services-maps:15.0.1"
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
+
+    implementation "android.arch.persistence.room:runtime:1.1.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.0"
+    implementation "android.arch.persistence.room:rxjava2:1.1.0"
+
+    //debug helpers
+    debugImplementation 'com.facebook.stetho:stetho:1.5.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
 }

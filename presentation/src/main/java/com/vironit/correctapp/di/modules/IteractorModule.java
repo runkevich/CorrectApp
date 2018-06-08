@@ -13,9 +13,11 @@ import dagger.Module;
 @Module
 public interface IteractorModule {
 
-    @Binds @Singleton
+    @Binds
+    @Singleton
     NewsInteractor provideNewsInteractor(NewsInteractorImpl newsInteractor);
 
-    @Binds @Singleton
+    @Binds
+    @Singleton
     ImageInteractor provideImageInteractor(ImageInteractorImpl imageInteractor);
 }

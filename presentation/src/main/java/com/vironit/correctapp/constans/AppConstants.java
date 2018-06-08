@@ -8,6 +8,9 @@ public interface AppConstants {
     String IO_SCHEDULER = "IO_SCHEDULER";
     String COMPUTATION_SCHEDULER = "COMPUTATION_SCHEDULER";
 
+    String IMAGES = "IMAGES";
+    String NEWS = "NEWS";
+
     int RC_SIGN_IN = 9001;
     String FACEBOOK = "FACEBOOK";
     String GOOGLE = "GOOGLE";
@@ -19,6 +22,8 @@ public interface AppConstants {
 
     long CASH_SIZE = 20 * 1024 * 1024;
 
-
     int NO_STRING_RES = -1;
+
+    int DEFAULT_ITEMS_COUNT_PER_PAGE = 20;
+    int LOAD_PAGE_SIZE = 10;
 }

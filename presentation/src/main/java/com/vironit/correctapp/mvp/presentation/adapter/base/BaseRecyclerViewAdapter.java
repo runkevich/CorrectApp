@@ -9,29 +9,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
-    private final List<Data> mData = new ArrayList<>();
+    private final List<Data> mDataList = new ArrayList<>();
 
-    protected List<Data> getData() {
-        return mData;
+    protected BaseRecyclerViewAdapter() {
+    }
+
+    public void addData(@NonNull List<Data> dataItems) {
+        AppLog.logObject(this);
+        mDataList.addAll(dataItems);
+        notifyItemRangeInserted(mDataList.size(), dataItems.size());
+    }
+
+    public void removeData() {
+        AppLog.logObject(this);
+        int size = mDataList.size();
+        mDataList.clear();
+        notifyItemRangeRemoved(0, size);
     }
 
     @Override
     public int getItemCount() {
         AppLog.logObject(this);
-        return mData.size();
+        return mDataList.size();
     }
 
-    public void addData(@NonNull List<Data> data) {
+    public int getRealItemsCount() {
         AppLog.logObject(this);
-        int curSize = mData.size();
-        mData.addAll(data);
-        notifyItemRangeInserted(curSize, data.size());
+        return getItemCount();
     }
 
-    public void removeData() {
+    protected List<Data> getmDataList() {
         AppLog.logObject(this);
-        int size = mData.size();
-        mData.clear();
-        notifyItemRangeRemoved(0, size);
+        return mDataList;
     }
 }

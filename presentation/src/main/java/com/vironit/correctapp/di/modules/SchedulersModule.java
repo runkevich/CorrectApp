@@ -28,7 +28,6 @@ public class SchedulersModule {
        return Schedulers.io();
     }
 
-
     @Provides
     @Singleton
     @Named(AppConstants.UI_SCHEDULER)

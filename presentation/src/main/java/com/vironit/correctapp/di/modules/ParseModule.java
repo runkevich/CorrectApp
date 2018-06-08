@@ -19,5 +19,4 @@ public class ParseModule {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
                 .create();
     }
-
 }

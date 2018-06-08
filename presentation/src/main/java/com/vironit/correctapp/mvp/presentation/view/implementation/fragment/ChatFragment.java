@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,8 +15,11 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
 import com.vironit.correctapp.R;
+import com.vironit.correctapp.mvp.model.repository.dto.maps.MyItem;
+import com.vironit.correctapp.mvp.model.repository.dto.maps.MyItemMarkerRender;
 import com.vironit.correctapp.mvp.presentation.presenter.ChatPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.base.BaseFragment;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IChatView;
@@ -27,9 +31,11 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
     @InjectPresenter
     ChatPresenter mChatPresenter;
 
-    GoogleMap myMap;
-    MapView mMapView;
+    private ClusterManager<MyItem> mClusterManager;
+    private GoogleMap myMap;
+    private MapView mMapView;
     private View rootView;
+
     @OnClick(R.id.btn_show_maps)
     void showMap(){
     }
@@ -48,7 +54,8 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
         return new ChatFragment();
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
         MapsInitializer.initialize(this.getActivity());
@@ -67,12 +74,51 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"))
-                .setDraggable(true);
-               // .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_taxi_black_24dp));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mClusterManager = new ClusterManager<MyItem>(this.getActivity(),googleMap);
+
+        final MyItemMarkerRender renderer = new MyItemMarkerRender(this.getActivity(), googleMap, mClusterManager);
+        mClusterManager.setRenderer(renderer);
+        googleMap.setOnCameraIdleListener(mClusterManager);
+        googleMap.setOnMarkerClickListener(mClusterManager);
+        addItems();
+
+        LatLng someCity = new LatLng(51.503186, -0.126446);
+        //googleMap.addMarker(new MarkerOptions().position(someCity)
+        //        .title("Marker in Somewhere"))
+        //          .setDraggable(true);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(someCity));
+
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
+            @Override
+            public boolean onClusterItemClick(MyItem myItem) {
+                Toast.makeText(getContext(), "Cluster item click", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
+            @Override public boolean onClusterClick(Cluster<MyItem> cluster) {
+                Toast.makeText(getContext(), "Cluster click", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+    }
+
+    private void addItems() {
+
+        // Set some lat/lng coordinates to start with.
+        double lat = 51.5145160;
+        double lng = -0.1270060;
+
+        // Add ten cluster items in close proximity, for purposes of this example.
+        for (int i = 0; i < 10; i++) {
+            double offset = i / 60d;
+            lat = lat + offset;
+            lng = lng + offset;
+            MyItem offsetItem = new MyItem(lat, lng,"Title" + i,"Snippet" + i);
+            mClusterManager.addItem(offsetItem);
+        }
+        mClusterManager.cluster();
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.vironit.correctapp.App;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.ImageInteractor;
+import com.vironit.correctapp.mvp.model.repository.dto.image.ImageData;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.CustomView;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
@@ -26,17 +27,12 @@ import java.io.File;
 
 import javax.inject.Inject;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-
 @InjectViewState
 public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
 
     @Inject
     ImageInteractor mImageInteractor;
 
-    private String selectedAPI = "";
 
     public ProfilePresenter() {
         App.getsAppComponent().inject(this);
@@ -161,18 +157,22 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
             if (file != null) {
                 CustomView.isPictire = true;
                 CustomView.d = Drawable.createFromPath(file.getPath());
-
                 getViewState().setPhoto(file);
-
-                RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
-                RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), "upload_test");
-
-                addLiteDisposable(mImageInteractor.uploadImage(body, name)
-                        .observeOn(mUIScheduler)
-                        .subscribe(list -> AppLog.logPresenter(this,"OOOOOKKKKK"),
-                                this));
+                sendRequest(file);
             }
         }
+    }
+
+    private void sendRequest(File file) {
+        Log.e("PATH_Photo", file.getAbsolutePath());
+        addLiteDisposable(mImageInteractor.uploadImage(file.getAbsolutePath())
+                .observeOn(mUIScheduler)
+                .doOnSuccess(this::parseCloudinaryResponse)
+                .subscribe(list -> AppLog.logPresenter(this),
+                        this));
+    }
+
+    private void parseCloudinaryResponse(ImageData response) {
+        getViewState().setPhoto(new File(response.getUrl()));
     }
 }

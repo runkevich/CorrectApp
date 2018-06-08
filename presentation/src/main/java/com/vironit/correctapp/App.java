@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 
+import com.facebook.stetho.Stetho;
 import com.twitter.sdk.android.core.Twitter;
 import com.vironit.correctapp.di.components.AppComponent;
 import com.vironit.correctapp.di.components.DaggerAppComponent;
@@ -36,6 +37,7 @@ public class App extends Application implements HasActivityInjector, HasServiceI
     public AndroidInjector<Service> serviceInjector() {
         return serviceDispatchingAndroidInjector;
     }
+
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
@@ -54,6 +56,7 @@ public class App extends Application implements HasActivityInjector, HasServiceI
         super.onCreate();
         initDagger2();
         Twitter.initialize(this);
+        initStetho();
     }
 
     private void initDagger2() {
@@ -61,5 +64,9 @@ public class App extends Application implements HasActivityInjector, HasServiceI
                 .appContext(this)
                 .build();
         sAppComponent.inject(this);
+    }
+
+    private void initStetho() {
+        Stetho.initializeWithDefaults(this);
     }
 }

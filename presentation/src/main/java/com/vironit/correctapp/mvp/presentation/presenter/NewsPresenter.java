@@ -50,7 +50,7 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
     private void dataReceived(@Nullable Data data) {
         AppLog.logPresenter(this);
         if (data != null) {
-            getViewState().dataListReceived(data.getArticles());
+            //getViewState().dataListReceived(data.getArticles());
         }
         mIsDataLoading = false;
     }
@@ -92,7 +92,7 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
         //throwable -> AppLog.logPresenter(this))
     }
 
-    @Override
+    //@Override
     public void receiveLinearLayoutScrollEvent(int visibleItemCount, int totalItemCount,
                                                int firstVisibleItemPos, @Nullable String id) {
         if (!mIsDataLoading) {
@@ -103,7 +103,7 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
         }
     }
 
-    @Override
+    //@Override
     public void receiveGridLayoutScrollEvent(@Nullable String id) {
 
     }
@@ -111,14 +111,14 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
     @Override
     public void refreshData() {
         if (mIsDataLoading) {
-            getViewState().dataListReceived(null);
+            //getViewState().dataListReceived(null);
         } else {
             mDataPage = 1;
             loadData();
         }
     }
 
-    @Override
+    //@Override
     protected void loadData() {
         AppLog.logPresenter(this);
         mIsDataLoading = true;
