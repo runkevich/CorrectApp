@@ -11,6 +11,7 @@ import com.vironit.correctapp.utils.AppLog;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -25,15 +26,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
-    public static String apiBaseUrl = BuildConfig.API_URL_IMAGE;
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     Cache provideCache(Context context) {
         File file = new File(context.getCacheDir(), "RESPONSE");
         return new Cache(file, AppConstants.CASH_SIZE);
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor((message -> AppLog.logObject(HttpLoggingInterceptor.class, message)));
@@ -42,7 +44,9 @@ public class RetrofitModule {
         return httpLoggingInterceptor;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
+    @Named(AppConstants.NEWS)
     OkHttpClient okHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
                               Cache cache,
                               HeaderInterceptor headerInterceptor) {
@@ -59,8 +63,10 @@ public class RetrofitModule {
         return okHttpClientBuilder.build();
     }
 
-    @Provides @Singleton
-    Retrofit provideRetrofit(OkHttpClient okHttpClient,
+    @Provides
+    @Singleton
+    @Named(AppConstants.NEWS)
+    Retrofit provideRetrofit(@Named(AppConstants.NEWS) OkHttpClient okHttpClient,
                              RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
                              GsonConverterFactory gsonConverterFactory) {
         return new Retrofit.Builder()
@@ -71,17 +77,47 @@ public class RetrofitModule {
                 .build();
     }
 
-    public static String changeApiBaseUrl(String newApiBaseUrl) {
-        apiBaseUrl = newApiBaseUrl;
-        return apiBaseUrl;
+
+
+    @Provides
+    @Singleton
+    @Named(AppConstants.IMAGES)
+    OkHttpClient okHttpClientImages(HttpLoggingInterceptor httpLoggingInterceptor,
+                              Cache cache) {
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+                .connectTimeout(AppConstants.CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(AppConstants.WRITE_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(AppConstants.READ_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        if (BuildConfig.IS_LOG_ENABLED) {
+            okHttpClientBuilder.addInterceptor(httpLoggingInterceptor);
+        }
+        okHttpClientBuilder.retryOnConnectionFailure(true);
+        okHttpClientBuilder.cache(cache);
+        return okHttpClientBuilder.build();
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
+    @Named(AppConstants.IMAGES)
+    Retrofit provideRetrofitImages(@Named(AppConstants.IMAGES) OkHttpClient okHttpClient,
+                             RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+                             GsonConverterFactory gsonConverterFactory) {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                .addConverterFactory(gsonConverterFactory)
+                .baseUrl(BuildConfig.API_URL_IMAGE)
+                .build();
+    }
+
+    @Provides
+    @Singleton
     RxJava2CallAdapterFactory rxJava2CallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     GsonConverterFactory gsonConverterFactory(Gson gson) {
         return GsonConverterFactory.create(gson);
     }

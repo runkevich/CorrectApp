@@ -6,6 +6,7 @@ import com.vironit.correctapp.di.modules.ApiModule;
 import com.vironit.correctapp.di.modules.AppActivitiesModule;
 import com.vironit.correctapp.di.modules.AppFragmentsModule;
 import com.vironit.correctapp.di.modules.ApplicationModule;
+import com.vironit.correctapp.di.modules.DataBaseModule;
 import com.vironit.correctapp.di.modules.FragmentModule;
 import com.vironit.correctapp.di.modules.IteractorModule;
 import com.vironit.correctapp.di.modules.ManagerModule;
@@ -31,7 +32,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {SchedulersModule.class, RepozitoryModule.class, ManagerModule.class, AppActivitiesModule.class,
         ApplicationModule.class, IteractorModule.class, SocialNetworkModule.class, FragmentModule.class, AppFragmentsModule.class,
-        RetrofitModule.class, ApiModule.class, ParseModule.class})
+        RetrofitModule.class, ApiModule.class, ParseModule.class, DataBaseModule.class})
 public interface AppComponent {
 
     @Component.Builder interface Builder {
@@ -54,6 +55,4 @@ public interface AppComponent {
     void inject(NewsPresenter newsPresenter);
 
     void inject(HomePresenter homePresenter);
-
-
 }
