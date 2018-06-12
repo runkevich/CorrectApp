@@ -22,13 +22,16 @@ public class CompanyDB {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COMPANY_ID)
-    @Nullable private Long companyId;
+    @Nullable
+    private Long companyId;
 
     @ColumnInfo(name = "COMPANY_NAME")
-    @NonNull private Long name;
+    @NonNull
+    private Long name;
 
     @ColumnInfo(name = "COMPANY_SALARY")
-    @NonNull private List<Long> salary;
+    @NonNull
+    private List<Long> salary;
 
     public CompanyDB(Long companyId, @NonNull Long name, @NonNull List<Long> salary) {
         this.companyId = companyId;

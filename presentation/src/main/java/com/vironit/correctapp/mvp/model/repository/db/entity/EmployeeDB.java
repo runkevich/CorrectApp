@@ -32,24 +32,32 @@ public class EmployeeDB {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = EMPLOYEE_ID)
-    @Nullable private Long employeeId;
+    @Nullable
+    private Long employeeId;
 
     @ColumnInfo(name = "EMPLOYEE_FIRST_NAME")
-    @NonNull private String firstname;
+    @NonNull
+    private String firstname;
 
     @ColumnInfo(name = EMPLOYEE_LAST_NAME)
-    @NonNull private String lastname;
+    @NonNull
+    private String lastname;
 
     @ColumnInfo(name = "EMPLOYEE_MIDDLE_NAME")
-    @NonNull private String middlename;
+    @NonNull
+    private String middlename;
+
     @ColumnInfo(name = "EMPLOYEE__DATE")
-    @NonNull private Date date;
+    @NonNull
+    private Date date;
 
     @ColumnInfo(name = DepatmentDB.DEPARTMENT_ID)
-    @NonNull private Long departmentId;
+    @NonNull
+    private Long departmentId;
 
     @Embedded
-    @NonNull private InsuranseDB insuranseDB;
+    @NonNull
+    private InsuranseDB insuranseDB;
 
     public EmployeeDB(Long employeeId,
                       @NonNull String firstname,

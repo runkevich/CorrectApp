@@ -8,11 +8,16 @@ import java.util.Date;
 
 public class InsuranseDB {
 
-    @Nullable private Long insuranseId;
-    @NonNull private Long insuranseCompanyId;
-    @NonNull private String insuranseCompanyName;
-    @NonNull private Date dateStart;
-    @NonNull private Date dateStop;
+    @Nullable
+    private Long insuranseId;
+    @NonNull
+    private Long insuranseCompanyId;
+    @NonNull
+    private String insuranseCompanyName;
+    @NonNull
+    private Date dateStart;
+    @NonNull
+    private Date dateStop;
 
     public InsuranseDB(Long insuranseId,
                        @NonNull Long insuranseCompanyId,

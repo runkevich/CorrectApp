@@ -53,5 +53,11 @@ public class HomePresenter extends BaseAppPresenter<IHomeView> {
                 .subscribeOn(mIOScheduler)
                 .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK3"),
                         this);
+
+        mCorrectDatabase.getEmployeeDAO()
+                .getById(1)
+                .subscribeOn(mIOScheduler)
+                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK3"),
+                        this);
     }
 }

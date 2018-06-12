@@ -93,6 +93,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         mTwitterAuthClient.authorize(activity, new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
+                //getViewState().showSuccesMessage();
                 getViewState().goToHomeActivity();
             }
 

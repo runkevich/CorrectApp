@@ -22,13 +22,16 @@ public class DepatmentDB {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = DEPARTMENT_ID)
-    @Nullable private Long departmentId;
+    @Nullable
+    private Long departmentId;
 
     @ColumnInfo(name = CompanyDB.COMPANY_ID)
-    @NonNull private Long companyId;
+    @NonNull
+    private Long companyId;
 
     @ColumnInfo(name = "DEPARTMENT_NAME")
-    @NonNull private String name;
+    @NonNull
+    private String name;
 
     public DepatmentDB() {
     }
