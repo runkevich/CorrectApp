@@ -6,7 +6,8 @@ import android.support.v7.widget.RecyclerView;
 public abstract class BasePaginationRecyclerViewAdapter<Data, VH extends RecyclerView.ViewHolder>
         extends BaseRecyclerViewAdapter<Data, VH> {
 
-    public @Nullable String getLastItemId() {
+    public @Nullable
+    String getLastItemId() {
         return null;
     }
 }

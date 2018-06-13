@@ -8,7 +8,9 @@ import com.vironit.correctapp.utils.AppLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.ViewHolder>
+        extends RecyclerView.Adapter<VH> {
+
     private final List<Data> mDataList = new ArrayList<>();
 
     protected BaseRecyclerViewAdapter() {
@@ -16,7 +18,7 @@ public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.View
 
     public void addData(@NonNull List<Data> dataItems) {
         AppLog.logObject(this);
-        mDataList.addAll(dataItems);
+        this.mDataList.addAll(dataItems);
         notifyItemRangeInserted(mDataList.size(), dataItems.size());
     }
 
@@ -38,7 +40,7 @@ public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.View
         return getItemCount();
     }
 
-    protected List<Data> getmDataList() {
+    protected List<Data> getDataList() {
         AppLog.logObject(this);
         return mDataList;
     }

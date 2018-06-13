@@ -19,8 +19,8 @@ public class NewsInteractorImpl implements NewsInteractor {
     }
 
     @Override
-    public Single<Data> getNews(String country, int page, int pageSize) {
-        return mNewsRepository.getNews(country,page,pageSize)
+    public Single<Data> getNews(int page, int pageSize) {
+        return mNewsRepository.getNews("ru",page,pageSize)
                 .onErrorResumeNext(ErrorHandlerUtil::defaultHandle);
     }
 }

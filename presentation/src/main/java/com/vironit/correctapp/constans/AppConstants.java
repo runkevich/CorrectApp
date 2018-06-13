@@ -10,6 +10,7 @@ public interface AppConstants {
 
     String IMAGES = "IMAGES";
     String NEWS = "NEWS";
+    String LIVIAPP = "LIVIAPP";
 
     int RC_SIGN_IN = 9001;
     String FACEBOOK = "FACEBOOK";

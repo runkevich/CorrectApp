@@ -76,7 +76,7 @@ public abstract class BasePaginationFragment<P extends BasePaginationPresenter>
         mSwipeRefreshLayout.post(mDisableRefreshRunnable);
     }
 
-    //@Override
+    @Override
     public void removeData() {
         BasePaginationRecyclerViewAdapter basePaginationRecyclerViewAdapter = getBasePaginationRecyclerViewAdapter();
         if (basePaginationRecyclerViewAdapter != null) {

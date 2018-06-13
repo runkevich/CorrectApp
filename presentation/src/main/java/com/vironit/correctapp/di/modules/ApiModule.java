@@ -3,6 +3,7 @@ package com.vironit.correctapp.di.modules;
 import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.repository.ApiInterface;
 import com.vironit.correctapp.mvp.model.repository.ApiInterfaceImage;
+import com.vironit.correctapp.mvp.model.repository.ApiOauthInterface;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -24,5 +25,11 @@ public class ApiModule {
     @Singleton
     ApiInterfaceImage provideInterfaceImage(@Named(AppConstants.IMAGES) Retrofit retrofit) {
         return retrofit.create(ApiInterfaceImage.class);
+    }
+
+    @Provides
+    @Singleton
+    ApiOauthInterface provideApiOauthInterface(@Named(AppConstants.LIVIAPP) Retrofit retrofit){
+        return retrofit.create(ApiOauthInterface.class);
     }
 }
