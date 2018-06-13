@@ -7,9 +7,9 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import static com.vironit.correctapp.mvp.model.repository.db.entity.DepatmentDB.DEPARTMENT_TABLE_NAME;
+import static com.vironit.correctapp.mvp.model.repository.db.entity.DepatmentDB.DEPARTMENT;
 
-@Entity(tableName = DEPARTMENT_TABLE_NAME,
+@Entity(tableName = DEPARTMENT,
         foreignKeys = {@ForeignKey(entity = CompanyDB.class,
                 parentColumns = CompanyDB.COMPANY_ID,
                 childColumns = CompanyDB.COMPANY_ID,
@@ -17,7 +17,7 @@ import static com.vironit.correctapp.mvp.model.repository.db.entity.DepatmentDB.
                 onUpdate = ForeignKey.CASCADE)})
 public class DepatmentDB {
 
-    public static final String DEPARTMENT_TABLE_NAME = "DEPARTMENT";
+    public static final String DEPARTMENT = "DEPARTMENT";
     public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
 
     @PrimaryKey(autoGenerate = true)
@@ -61,5 +61,14 @@ public class DepatmentDB {
 
     public void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "DepatmentDB{" +
+                "departmentId=" + departmentId +
+                ", companyId=" + companyId +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

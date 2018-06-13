@@ -54,10 +54,23 @@ public class HomePresenter extends BaseAppPresenter<IHomeView> {
                 .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK3"),
                         this);
 
-        mCorrectDatabase.getEmployeeDAO()
-                .getById(1)
+//        mCorrectDatabase.getEmployeeDAO()
+//                .getById(1)
+//                .subscribeOn(mIOScheduler)
+//                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK3"),
+//                        this);
+
+        mCorrectDatabase.getCompanyDepartmentDAO()
+                .loadCompanyAndDepartmentDB()
                 .subscribeOn(mIOScheduler)
-                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK3"),
+                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK4"),
                         this);
+
+        mCorrectDatabase.getCompanyAndDepartmentAndEmployeeDAO()
+               .loadCompanyAndDepartmentAndEmployeeDAO()
+                .subscribeOn(mIOScheduler)
+                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK5"),
+                        this);
+
     }
 }

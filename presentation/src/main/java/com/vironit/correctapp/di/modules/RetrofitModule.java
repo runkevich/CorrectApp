@@ -78,12 +78,11 @@ public class RetrofitModule {
     }
 
 
-
     @Provides
     @Singleton
     @Named(AppConstants.IMAGES)
     OkHttpClient okHttpClientImages(HttpLoggingInterceptor httpLoggingInterceptor,
-                              Cache cache) {
+                                    Cache cache) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(AppConstants.CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .writeTimeout(AppConstants.WRITE_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -100,13 +99,46 @@ public class RetrofitModule {
     @Singleton
     @Named(AppConstants.IMAGES)
     Retrofit provideRetrofitImages(@Named(AppConstants.IMAGES) OkHttpClient okHttpClient,
-                             RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
-                             GsonConverterFactory gsonConverterFactory) {
+                                   RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+                                   GsonConverterFactory gsonConverterFactory) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .addConverterFactory(gsonConverterFactory)
                 .baseUrl(BuildConfig.API_URL_IMAGE)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    @Named(AppConstants.LIVIAPP)
+    OkHttpClient okHttpClientLiviApp(HttpLoggingInterceptor httpLoggingInterceptor,
+                                     Cache cache,
+                                     HeaderInterceptor headerInterceptor) {
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+                .connectTimeout(AppConstants.CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(AppConstants.WRITE_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(AppConstants.READ_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        if (BuildConfig.IS_LOG_ENABLED) {
+            okHttpClientBuilder.addInterceptor(httpLoggingInterceptor);
+        }
+        okHttpClientBuilder.retryOnConnectionFailure(true);
+        okHttpClientBuilder.cache(cache);
+        okHttpClientBuilder.addInterceptor(headerInterceptor);
+        return okHttpClientBuilder.build();
+    }
+
+    @Provides
+    @Singleton
+    @Named(AppConstants.LIVIAPP)
+    Retrofit provideRetrofitLiviApp(@Named(AppConstants.LIVIAPP) OkHttpClient okHttpClient,
+                                    RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+                                    GsonConverterFactory gsonConverterFactory) {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                .addConverterFactory(gsonConverterFactory)
+                .baseUrl(BuildConfig.API_URL_LIVIAPP)
                 .build();
     }
 

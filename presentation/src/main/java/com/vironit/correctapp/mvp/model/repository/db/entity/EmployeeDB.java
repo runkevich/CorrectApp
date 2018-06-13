@@ -12,9 +12,9 @@ import android.support.annotation.Nullable;
 import java.util.Date;
 
 import static com.vironit.correctapp.mvp.model.repository.db.entity.EmployeeDB.EMPLOYEE_LAST_NAME;
-import static com.vironit.correctapp.mvp.model.repository.db.entity.EmployeeDB.EMPLOYEE_TABLE_NAME;
+import static com.vironit.correctapp.mvp.model.repository.db.entity.EmployeeDB.EMPLOYEE;
 
-@Entity(tableName = EMPLOYEE_TABLE_NAME,
+@Entity(tableName = EMPLOYEE,
         foreignKeys = {@ForeignKey(entity = DepatmentDB.class,
                 parentColumns = DepatmentDB.DEPARTMENT_ID,
                 childColumns = DepatmentDB.DEPARTMENT_ID,
@@ -26,7 +26,7 @@ import static com.vironit.correctapp.mvp.model.repository.db.entity.EmployeeDB.E
 
 public class EmployeeDB {
 
-    public static final String EMPLOYEE_TABLE_NAME = "EMPLOYEE";
+    public static final String EMPLOYEE = "EMPLOYEE";
     public static final String EMPLOYEE_ID = "EMPLOYEE_ID";
     public static final String EMPLOYEE_LAST_NAME = "EMPLOYEE_LAST_NAME";
 

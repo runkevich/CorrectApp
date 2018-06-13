@@ -11,13 +11,13 @@ import com.vironit.correctapp.mvp.model.repository.db.converter.LongListToString
 
 import java.util.List;
 
-import static com.vironit.correctapp.mvp.model.repository.db.entity.CompanyDB.COMPANY_TABLE_NAME;
+import static com.vironit.correctapp.mvp.model.repository.db.entity.CompanyDB.COMPANY;
 
-@Entity(tableName = COMPANY_TABLE_NAME)
+@Entity(tableName = COMPANY)
 @TypeConverters(LongListToStringConverter.class)
 public class CompanyDB {
 
-    public static final String COMPANY_TABLE_NAME = "COMPANY";
+    public static final String COMPANY = "COMPANY";
     public static final String COMPANY_ID = "COMPANY_ID";
 
     @PrimaryKey(autoGenerate = true)
@@ -64,5 +64,14 @@ public class CompanyDB {
 
     public void setSalary(@NonNull List<Long> salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyDB{" +
+                "companyId=" + companyId +
+                ", name=" + name +
+                ", salary=" + salary +
+                '}';
     }
 }

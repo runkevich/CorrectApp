@@ -14,6 +14,7 @@ android {
         buildConfigField "String", "API_URL_IMAGE", API_URL_IMAGE
         buildConfigField "String", "IMAGE_SECRET_KEY", IMAGE_SECRET_KEY
         buildConfigField "int", "DATABASE_VERSION", DATABASE_VERSION
+        buildConfigField "String", "API_URL_LIVIAPP", API_URL_LIVIAPP
     }
     buildTypes {
         release {

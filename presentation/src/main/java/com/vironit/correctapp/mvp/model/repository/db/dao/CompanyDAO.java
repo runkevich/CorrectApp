@@ -10,6 +10,9 @@ import io.reactivex.Single;
 @Dao
 public interface CompanyDAO {
 
-    @Query("SELECT * FROM " + CompanyDB.COMPANY_TABLE_NAME)
+    @Query("SELECT * FROM " + CompanyDB.COMPANY)
     Single<CompanyDB> getAllCompanies();
+
+//    @Query("SELECT * FROM COMPANY WHERE COMPANY_ID = :id LIMIT 1")
+//    Single<List<CompanyDB>> getCompanyById(long id);
 }

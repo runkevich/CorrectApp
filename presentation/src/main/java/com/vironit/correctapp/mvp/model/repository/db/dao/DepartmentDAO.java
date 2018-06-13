@@ -10,6 +10,6 @@ import io.reactivex.Single;
 @Dao
 public interface DepartmentDAO {
 
-    @Query("SELECT * FROM " + DepatmentDB.DEPARTMENT_TABLE_NAME)
+    @Query("SELECT * FROM " + DepatmentDB.DEPARTMENT)
     Single<DepatmentDB> getAllDepatments();
 }

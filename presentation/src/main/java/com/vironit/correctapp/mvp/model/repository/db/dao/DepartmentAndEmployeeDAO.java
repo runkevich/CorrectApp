@@ -10,8 +10,8 @@ import java.util.List;
 import io.reactivex.Single;
 
 @Dao
-public interface CompanyDepartmentDAO {
+public interface DepartmentAndEmployeeDAO {
 
-    @Query("SELECT * from COMPANY")
-    Single<List<CompanyAndDepartmentDB>> loadCompanyAndDepartmentDB();
+    @Query("SELECT * from DEPARTMENT")
+    Single<List<CompanyAndDepartmentDB>> loadDepartmentAndEmployeeDAO();
 }

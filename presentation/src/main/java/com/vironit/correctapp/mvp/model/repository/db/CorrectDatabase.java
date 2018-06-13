@@ -6,10 +6,10 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.vironit.correctapp.BuildConfig;
 import com.vironit.correctapp.mvp.model.repository.db.converter.DateToLongConverter;
+import com.vironit.correctapp.mvp.model.repository.db.dao.CompanyAndDepartmentAndEmployeeDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.CompanyDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.CompanyDepartmentDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.DepartmentDAO;
-import com.vironit.correctapp.mvp.model.repository.db.dao.DepartmentEmployeeDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.EmployeeDAO;
 import com.vironit.correctapp.mvp.model.repository.db.entity.CompanyDB;
 import com.vironit.correctapp.mvp.model.repository.db.entity.DepatmentDB;
@@ -28,7 +28,7 @@ public abstract class CorrectDatabase extends RoomDatabase {
 
     public abstract CompanyDepartmentDAO getCompanyDepartmentDAO();
 
-    public abstract DepartmentEmployeeDAO getDepartmentEmployeeDAO();
+    public abstract CompanyAndDepartmentAndEmployeeDAO getCompanyAndDepartmentAndEmployeeDAO();
 }
 //1) Insert ( Replace Ignore)
 //2) SELECT - все WHERE ID
