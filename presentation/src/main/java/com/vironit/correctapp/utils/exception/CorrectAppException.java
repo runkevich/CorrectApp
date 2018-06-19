@@ -49,6 +49,7 @@ public class CorrectAppException extends Exception {
         this.errorStatus = errorStatus;
         this.stringResId = null;
     }
+
     @Nullable
     public ErrorStatus getErrorStatus() {
         return errorStatus;

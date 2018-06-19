@@ -11,12 +11,14 @@ import com.vironit.correctapp.mvp.model.repository.db.dao.CompanyDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.CompanyDepartmentDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.DepartmentDAO;
 import com.vironit.correctapp.mvp.model.repository.db.dao.EmployeeDAO;
+import com.vironit.correctapp.mvp.model.repository.db.dao.ArticleDAO;
+import com.vironit.correctapp.mvp.model.repository.db.entity.ArticleDB;
 import com.vironit.correctapp.mvp.model.repository.db.entity.CompanyDB;
 import com.vironit.correctapp.mvp.model.repository.db.entity.DepatmentDB;
 import com.vironit.correctapp.mvp.model.repository.db.entity.EmployeeDB;
 
 @TypeConverters(DateToLongConverter.class)
-@Database(entities = {CompanyDB.class, DepatmentDB.class, EmployeeDB.class},
+@Database(entities = {CompanyDB.class, DepatmentDB.class, EmployeeDB.class, ArticleDB.class},
         version = BuildConfig.DATABASE_VERSION)
 public abstract class CorrectDatabase extends RoomDatabase {
 
@@ -29,6 +31,8 @@ public abstract class CorrectDatabase extends RoomDatabase {
     public abstract CompanyDepartmentDAO getCompanyDepartmentDAO();
 
     public abstract CompanyAndDepartmentAndEmployeeDAO getCompanyAndDepartmentAndEmployeeDAO();
+
+    public abstract ArticleDAO getNewsDAO();
 }
 //1) Insert ( Replace Ignore)
 //2) SELECT - все WHERE ID

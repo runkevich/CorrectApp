@@ -4,6 +4,7 @@ public interface AppConstants {
 
     long LONG_DOUBLE_BACK_DELAYD = 2000;
 
+
     String UI_SCHEDULER = "UI_SCHEDULER";
     String IO_SCHEDULER = "IO_SCHEDULER";
     String COMPUTATION_SCHEDULER = "COMPUTATION_SCHEDULER";
@@ -27,4 +28,6 @@ public interface AppConstants {
 
     int DEFAULT_ITEMS_COUNT_PER_PAGE = 20;
     int LOAD_PAGE_SIZE = 10;
+
+    String TOCKEN_KEY = "TOCKEN_KEY";
 }

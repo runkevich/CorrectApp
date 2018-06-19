@@ -1,15 +1,12 @@
-package com.vironit.correctapp.mvp.model.interactor.interfaces;
+package com.vironit.correctapp.mvp.model.repository.interfaces;
 
 import com.vironit.correctapp.mvp.model.repository.db.entity.ArticleDB;
-import com.vironit.correctapp.mvp.model.repository.dto.Data;
 
 import java.util.List;
 
 import io.reactivex.Single;
 
-public interface NewsInteractor {
-
-    Single<Data> getNews(int page, int pageSize);
+public interface NewsDBRepository {
 
     Single<List<ArticleDB>> getAllNewsDB();
     void addNewsDB(ArticleDB... articleDB);

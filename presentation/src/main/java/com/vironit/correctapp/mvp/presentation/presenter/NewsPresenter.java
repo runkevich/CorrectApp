@@ -31,6 +31,7 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
                 .doFinally(() -> getViewState().hidePaginationProgress())
                 .subscribe(list -> AppLog.logPresenter(this, "OOOOOKKKKK"),
                         this));
+
     }
 
     @Override
@@ -43,99 +44,4 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
         super.detachView(view);
         refreshData();
     }
-
-
-//
-//    private void dataReceived(@Nullable Data data) {
-//        AppLog.logPresenter(this);
-//        if (data != null) {
-//            //getViewState().dataListReceived(data.getArticles());
-//        }
-//        mIsDataLoading = false;
-//    }
-//
-//    private void loadNewsFirstTime(@NonNull String country,
-//                                   @IntRange(from = 1) int page,
-//                                   @IntRange(from = 1,
-//                                           to = 100) int pageSize) {
-//        AppLog.logPresenter(this);
-//        getViewState().showProgress();
-//        addLiteDisposable(mNewsInteractor.getNews(country, page, pageSize)
-//                .observeOn(mUIScheduler)
-//                .doOnSuccess(this::dataReceived)
-//                .doFinally(() -> getViewState().hideProgress())
-//                .subscribe(list -> AppLog.logPresenter(this),
-//                        this));
-//    }
-//
-//    @Override
-//    public void attachView(INewsView view) {
-//        AppLog.logPresenter(this);
-//        super.attachView(view);
-//        // loadNews();
-//        loadData();
-//    }
-//
-//    private void loadNews(@NonNull String country,
-//                          @IntRange(from = 1) int page,
-//                          @IntRange(from = 1,
-//                                  to = 100) int pageSize) {
-//        getViewState().showProgress();
-//        addLiteDisposable(mNewsInteractor.getNews(country, page, pageSize)
-//                .observeOn(mUIScheduler)
-//                .doOnSuccess(list -> {
-//                })
-//                .doFinally(() -> getViewState().hideProgress())
-//                .subscribe(list -> AppLog.logPresenter(this, "OOOOOKKKKK"),
-//                        this));
-//        //throwable -> AppLog.logPresenter(this))
-//    }
-//
-//    //@Override
-//    public void receiveLinearLayoutScrollEvent(int visibleItemCount, int totalItemCount,
-//                                               int firstVisibleItemPos, @Nullable String id) {
-//        if (!mIsDataLoading) {
-//            if (firstVisibleItemPos != 0 && visibleItemCount + firstVisibleItemPos >= totalItemCount - 2) {
-//                ++mDataPage;
-//                loadData();
-//            }
-//        }
-//    }
-//
-//    //@Override
-//    public void receiveGridLayoutScrollEvent(@Nullable String id) {
-//
-//    }
-//
-//    @Override
-//    public void refreshData() {
-//        if (mIsDataLoading) {
-//            //getViewState().dataListReceived(null);
-//        } else {
-//            mDataPage = 1;
-//            loadData();
-//        }
-//    }
-//
-//    //@Override
-//    protected void loadData() {
-//        AppLog.logPresenter(this);
-//        mIsDataLoading = true;
-//        if (mDataPage == 0) {
-//            ++mDataPage;
-//            getViewState().showProgress();
-//            addLiteDisposable(mNewsInteractor.getNews(COUNTRY_CODE, mDataPage, DATA_PAGE_SIZE)
-//                    .observeOn(mUIScheduler)
-//                    .doOnSuccess(this::dataReceived)
-//                    .doFinally(() -> getViewState().hideProgress())
-//                    .subscribe(list -> AppLog.logPresenter(this),
-//                            this));
-//        } else {
-//            addLiteDisposable(mNewsInteractor.getNews(COUNTRY_CODE, mDataPage, DATA_PAGE_SIZE)
-//                    .observeOn(mUIScheduler)
-//                    .doOnSuccess(this::dataReceived)
-//                    .subscribe(list -> AppLog.logPresenter(this),
-//                            this));
-//        }
-//    }
 }

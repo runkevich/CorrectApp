@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.vironit.correctapp.BuildConfig;
 import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.manager.implementation.network.HeaderInterceptor;
+import com.vironit.correctapp.mvp.model.manager.implementation.network.HeaderInterceptorLivia;
 import com.vironit.correctapp.utils.AppLog;
 
 import java.io.File;
@@ -25,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetrofitModule {
-
 
     @Provides
     @Singleton
@@ -114,7 +114,7 @@ public class RetrofitModule {
     @Named(AppConstants.LIVIAPP)
     OkHttpClient okHttpClientLiviApp(HttpLoggingInterceptor httpLoggingInterceptor,
                                      Cache cache,
-                                     HeaderInterceptor headerInterceptor) {
+                                     HeaderInterceptorLivia headerInterceptor) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(AppConstants.CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .writeTimeout(AppConstants.WRITE_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)

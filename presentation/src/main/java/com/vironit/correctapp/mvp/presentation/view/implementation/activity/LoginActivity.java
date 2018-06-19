@@ -35,9 +35,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         super.onCreate(savedInstanceState);
 
         mLoginPresenter.signOutFromAllAccounts();
-        bTwitter.setOnClickListener(v->mLoginPresenter.clickOnTwitter(this));
-        bFacebook.setOnClickListener(v->mLoginPresenter.clickOnFacebook(this));
-        bGoogle.setOnClickListener(v->mLoginPresenter.clickOnGoogle(this));
+        bTwitter.setOnClickListener(v -> mLoginPresenter.clickOnTwitter(this));
+        bFacebook.setOnClickListener(v -> mLoginPresenter.clickOnFacebook(this));
+        bGoogle.setOnClickListener(v -> mLoginPresenter.clickOnGoogle(this));
     }
 
     public static void start(@Nullable Context context) {
@@ -81,6 +81,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @Override
     public void goToHomeActivity() {
-        startActivity(new Intent(this,HomeActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

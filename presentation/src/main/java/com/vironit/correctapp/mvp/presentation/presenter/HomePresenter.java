@@ -12,13 +12,15 @@ import javax.inject.Inject;
 @InjectViewState
 public class HomePresenter extends BaseAppPresenter<IHomeView> {
 
-    @Inject CorrectDatabase mCorrectDatabase;
+    @Inject
+    CorrectDatabase mCorrectDatabase;
 
     public HomePresenter() {
         App.getsAppComponent().inject(this);
     }
 
-    @Override public void attachView(IHomeView view) {
+    @Override
+    public void attachView(IHomeView view) {
         super.attachView(view);
         show();
     }
@@ -36,6 +38,7 @@ public class HomePresenter extends BaseAppPresenter<IHomeView> {
     }
 
     private void show() {
+        long i = 1;
         mCorrectDatabase.getCompanyDAO()
                 .getAllCompanies()
                 .subscribeOn(mIOScheduler)
@@ -67,10 +70,16 @@ public class HomePresenter extends BaseAppPresenter<IHomeView> {
                         this);
 
         mCorrectDatabase.getCompanyAndDepartmentAndEmployeeDAO()
-               .loadCompanyAndDepartmentAndEmployeeDAO()
+                .loadCompanyAndDepartmentAndEmployeeDAO()
                 .subscribeOn(mIOScheduler)
                 .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK5"),
                         this);
+
+//        mCorrectDatabase.getCompanyAndDepartmentAndEmployeeDAO()
+//                .getCompanyWithDepartmentsAndEmployeesFromReverse(i)
+//                .subscribeOn(mIOScheduler)
+//                .subscribe(companyDB -> AppLog.logPresenter(this, "OOOOOKKKKK5"),
+//                        this);
 
     }
 }
