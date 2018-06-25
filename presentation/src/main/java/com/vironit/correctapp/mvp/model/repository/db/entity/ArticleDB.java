@@ -4,7 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.vironit.correctapp.mvp.model.repository.dto.Source;
@@ -23,41 +22,41 @@ public class ArticleDB {
     private Long articleId;
 
     @Embedded
-    @NonNull
+    @Nullable
     private Source source;
 
     @ColumnInfo(name = "AUTHOR")
-    @NonNull
+    @Nullable
     private String author;
 
     @ColumnInfo(name = "TITLE")
-    @NonNull
+    @Nullable
     private String title;
 
     @ColumnInfo(name = "DESCRIPTION")
-    @NonNull
+    @Nullable
     private String description;
 
     @ColumnInfo(name = "URL")
-    @NonNull
+    @Nullable
     private String url;
 
     @ColumnInfo(name = "URL_TO_IMAGE")
-    @NonNull
+    @Nullable
     private String urlToImage;
 
     @ColumnInfo(name = "PUBLISHED_AT")
-    @NonNull
+    @Nullable
     private String publishedAt;
 
     public ArticleDB(Long articleId,
-                     @NonNull Source source,
-                     @NonNull String author,
-                     @NonNull String title,
-                     @NonNull String description,
-                     @NonNull String url,
-                     @NonNull String urlToImage,
-                     @NonNull String publishedAt) {
+                     @Nullable Source source,
+                     @Nullable String author,
+                     @Nullable String title,
+                     @Nullable String description,
+                     @Nullable String url,
+                     @Nullable String urlToImage,
+                     @Nullable String publishedAt) {
         this.articleId = articleId;
         this.source = source;
         this.author = author;
@@ -73,74 +72,74 @@ public class ArticleDB {
     }
 
     @Nullable
-    public static String getArticleId() {
-        return ARTICLE_ID;
+    public Long getArticleId() {
+        return articleId;
     }
 
     public void setArticleId(@Nullable Long articleId) {
         this.articleId = articleId;
     }
 
-    @NonNull
+    @Nullable
     public Source getSource() {
         return source;
     }
 
-    public void setSource(@NonNull Source source) {
+    public void setSource(@Nullable Source source) {
         this.source = source;
     }
 
-    @NonNull
+    @Nullable
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(@NonNull String author) {
+    public void setAuthor(@Nullable String author) {
         this.author = author;
     }
 
-    @NonNull
+    @Nullable
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@NonNull String title) {
+    public void setTitle(@Nullable String title) {
         this.title = title;
     }
 
-    @NonNull
+    @Nullable
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NonNull String description) {
+    public void setDescription(@Nullable String description) {
         this.description = description;
     }
 
-    @NonNull
+    @Nullable
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(@NonNull String url) {
+    public void setUrl(@Nullable String url) {
         this.url = url;
     }
 
-    @NonNull
+    @Nullable
     public String getUrlToImage() {
         return urlToImage;
     }
 
-    public void setUrlToImage(@NonNull String urlToImage) {
+    public void setUrlToImage(@Nullable String urlToImage) {
         this.urlToImage = urlToImage;
     }
 
-    @NonNull
+    @Nullable
     public String getPublishedAt() {
         return publishedAt;
     }
 
-    public void setPublishedAt(@NonNull String publishedAt) {
+    public void setPublishedAt(@Nullable String publishedAt) {
         this.publishedAt = publishedAt;
     }
 }

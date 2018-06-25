@@ -30,14 +30,15 @@ public class NewsInteractorImpl implements NewsInteractor {
         return mNewsRepository.getNews("ru",page,pageSize)
                 .onErrorResumeNext(ErrorHandlerUtil::defaultHandle);
     }
+//
+//    @Override
+//    public Single<List<ArticleDB>> getAllNewsDB() {
+//        return mNewsDBRepository.getAllNewsDB();
+//    }
 
     @Override
-    public Single<List<ArticleDB>> getAllNewsDB() {
-        return mNewsDBRepository.getAllNewsDB();
-    }
-
-    @Override
-    public void addNewsDB(ArticleDB... articleDB) {
-        mNewsDBRepository.addNewsDB(articleDB);
+    public Single<List<Long>> addNewsDB(ArticleDB... articleDB) {
+      return mNewsDBRepository.addNewsDB(articleDB);
+        //articlesDB.length != 0 ? mNewsDBRepository.addNewsToDB(articlesDB) : Single.never();
     }
 }

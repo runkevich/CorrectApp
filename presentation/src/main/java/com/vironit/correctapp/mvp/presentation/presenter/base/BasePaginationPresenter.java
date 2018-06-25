@@ -82,6 +82,4 @@ public abstract class BasePaginationPresenter<View extends IBasePaginationView> 
     protected void setNextPageAllow(@Nullable List list) {
         mIsNextPageAllow = !(list == null || (list.size() < getItemsCountPerPage()));
     }
-
-
 }

@@ -11,6 +11,7 @@ public interface NewsInteractor {
 
     Single<Data> getNews(int page, int pageSize);
 
-    Single<List<ArticleDB>> getAllNewsDB();
-    void addNewsDB(ArticleDB... articleDB);
+    //Single<List<ArticleDB>> getAllNewsDB(ArticleDB... articlesDB);
+    Single<List<Long>> addNewsDB(ArticleDB... articleDB);
+   //void addNewsDB (List<ArticleDB> articleDBS);
 }

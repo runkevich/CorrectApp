@@ -1,5 +1,7 @@
 package com.vironit.correctapp.mvp.model.repository.implementation;
 
+import android.util.Log;
+
 import com.vironit.correctapp.constans.AppConstants;
 import com.vironit.correctapp.mvp.model.repository.db.CorrectDatabase;
 import com.vironit.correctapp.mvp.model.repository.db.entity.ArticleDB;
@@ -34,9 +36,11 @@ public class NewsDBRepositoryImpl implements NewsDBRepository {
     }
 
     @Override
-    public void addNewsDB(ArticleDB... articleDB) {
-        Single.fromCallable(() -> mCorrectDatabase.getNewsDAO().insertNewsDB(articleDB))
-               .subscribeOn(mScheduler)
-                .subscribe();
+    public Single<List<Long>> addNewsDB(ArticleDB... articleDB) {
+       return Single.fromCallable(() -> mCorrectDatabase.getNewsDAO()
+               .insertNewsDb(articleDB))
+                .subscribeOn(mScheduler)
+                .doOnSuccess(list -> Log.i("DB", "success"))
+                .doOnError(t -> Log.i("DB", t.getMessage()));
     }
 }

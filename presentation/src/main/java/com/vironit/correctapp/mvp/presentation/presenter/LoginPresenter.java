@@ -69,7 +69,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
 
                     @Override
                     public void onCancel() {
-                        // TODO
+                        // TODO cancel for facebook
                     }
 
                     @Override

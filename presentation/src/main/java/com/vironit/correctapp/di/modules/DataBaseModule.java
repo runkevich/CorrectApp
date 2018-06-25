@@ -17,7 +17,7 @@ public class DataBaseModule {
     @Singleton
     CorrectDatabase provideCorrectDatabase(Context context) {
         return Room.databaseBuilder(context.getApplicationContext(),
-                CorrectDatabase.class, "AppDatabase.db")
+                CorrectDatabase.class, "NewsDatabase.db")
                 .fallbackToDestructiveMigration()
                 .build();
     }

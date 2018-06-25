@@ -9,5 +9,5 @@ import io.reactivex.Single;
 public interface NewsDBRepository {
 
     Single<List<ArticleDB>> getAllNewsDB();
-    void addNewsDB(ArticleDB... articleDB);
+    Single<List<Long>> addNewsDB(ArticleDB... articleDB);
 }
