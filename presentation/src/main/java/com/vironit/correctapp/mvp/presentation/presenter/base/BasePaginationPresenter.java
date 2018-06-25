@@ -12,6 +12,8 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BasePaginationPresenter<View extends IBasePaginationView> extends BaseAppPresenter<View> {
 
+    //TODO fix pagination
+
     protected boolean mIsNextPageAllow = true;
 
     @Nullable
