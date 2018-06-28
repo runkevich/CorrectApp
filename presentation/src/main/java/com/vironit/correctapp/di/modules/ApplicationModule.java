@@ -26,5 +26,4 @@ public class ApplicationModule {
     SharedPreferences provideSharedPreferences(App app) {
         return PreferenceManager.getDefaultSharedPreferences(app);
     }
-
 }

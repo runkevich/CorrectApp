@@ -25,11 +25,11 @@ public abstract class ErrorHandlerUtil {
         }
     }
 
+
     private static boolean isNoNetworkException(@Nullable Throwable throwable) {
         return throwable != null
                 && (throwable instanceof SocketTimeoutException
                 || throwable instanceof ConnectException
                 || throwable instanceof UnknownHostException);
     }
-
 }

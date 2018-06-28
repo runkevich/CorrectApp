@@ -27,18 +27,24 @@ public class NewsInteractorImpl implements NewsInteractor {
 
     @Override
     public Single<Data> getNews(int page, int pageSize) {
-        return mNewsRepository.getNews("ru",page,pageSize)
+        return mNewsRepository.getNews("ru", page, pageSize)
                 .onErrorResumeNext(ErrorHandlerUtil::defaultHandle);
     }
-//
-//    @Override
-//    public Single<List<ArticleDB>> getAllNewsDB() {
-//        return mNewsDBRepository.getAllNewsDB();
-//    }
 
     @Override
-    public Single<List<Long>> addNewsDB(ArticleDB... articleDB) {
-      return mNewsDBRepository.addNewsDB(articleDB);
-        //articlesDB.length != 0 ? mNewsDBRepository.addNewsToDB(articlesDB) : Single.never();
+    public Single<List<Long>> addNewsToDB(ArticleDB... articleDB) {
+        return mNewsDBRepository.addNewsToDB(articleDB);
+    }
+
+    @Override
+    public Single<List<ArticleDB>> getNewsFromDB(int page, int pageSize) {
+        return mNewsDBRepository.getAllNewsFromDB(page,pageSize)
+                .onErrorResumeNext(ErrorHandlerUtil::defaultHandle);
+    }
+
+    @Override
+    public Single<Integer> deleteNews(ArticleDB... articleDB) {
+        return mNewsDBRepository
+                .deleteNews(articleDB);
     }
 }

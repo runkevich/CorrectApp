@@ -28,19 +28,31 @@ public class NewsDBRepositoryImpl implements NewsDBRepository {
     }
 
     @Override
-    public Single<List<ArticleDB>> getAllNewsDB() {
+    public Single<List<ArticleDB>> getAllNewsFromDB(int page, int pageSize) {
         return mCorrectDatabase
                 .getNewsDAO()
-                .getAllNewsDB()
-                .subscribeOn(mScheduler);
+                .getAllNewsDB(page,pageSize)
+                .subscribeOn(mScheduler)
+                .doOnSuccess(list -> Log.i("DB_FROM", "success"))
+                .doOnError(t -> Log.i("DB_FROM", t.getMessage()));
     }
 
     @Override
-    public Single<List<Long>> addNewsDB(ArticleDB... articleDB) {
+    public Single<List<Long>> addNewsToDB(ArticleDB... articleDB) {
        return Single.fromCallable(() -> mCorrectDatabase.getNewsDAO()
                .insertNewsDb(articleDB))
                 .subscribeOn(mScheduler)
                 .doOnSuccess(list -> Log.i("DB", "success"))
                 .doOnError(t -> Log.i("DB", t.getMessage()));
+    }
+
+    @Override
+    public Single<Integer> deleteNews(ArticleDB... articleDB) {
+      //  mCorrectDatabase.getNewsDAO().delete(articleDB);
+       return  Single.fromCallable(() -> mCorrectDatabase.getNewsDAO()
+                .delete(articleDB))
+                 .subscribeOn(mScheduler)
+               .doOnSuccess(list -> Log.i("DELETE_DB","success"))
+               .doOnError(t -> Log.i("DELETE_DB","errorrrrrr"));
     }
 }

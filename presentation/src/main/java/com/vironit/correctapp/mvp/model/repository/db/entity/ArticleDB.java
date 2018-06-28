@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.vironit.correctapp.mvp.model.repository.dto.Source;
@@ -16,7 +17,6 @@ public class ArticleDB {
     public static final String ARTICLE = "ARTICLE";
     public static final String ARTICLE_ID = "ARTICLE_ID";
 
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = ARTICLE_ID)
     @Nullable
     private Long articleId;
@@ -37,8 +37,9 @@ public class ArticleDB {
     @Nullable
     private String description;
 
+    @PrimaryKey
     @ColumnInfo(name = "URL")
-    @Nullable
+    @NonNull
     private String url;
 
     @ColumnInfo(name = "URL_TO_IMAGE")
@@ -54,7 +55,7 @@ public class ArticleDB {
                      @Nullable String author,
                      @Nullable String title,
                      @Nullable String description,
-                     @Nullable String url,
+                     @NonNull String url,
                      @Nullable String urlToImage,
                      @Nullable String publishedAt) {
         this.articleId = articleId;

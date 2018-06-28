@@ -8,6 +8,8 @@ import io.reactivex.Single;
 
 public interface NewsDBRepository {
 
-    Single<List<ArticleDB>> getAllNewsDB();
-    Single<List<Long>> addNewsDB(ArticleDB... articleDB);
+    Single<List<ArticleDB>> getAllNewsFromDB(int page, int pageSize);
+    Single<List<Long>> addNewsToDB(ArticleDB... articleDB);
+
+    Single<Integer> deleteNews(ArticleDB... articleDB);
 }

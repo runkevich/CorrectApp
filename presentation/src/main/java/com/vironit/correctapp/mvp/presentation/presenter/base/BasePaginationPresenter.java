@@ -37,6 +37,7 @@ public abstract class BasePaginationPresenter<View extends IBasePaginationView> 
                               int lastVisibleItemPosition,
                               @Nullable String lastItemId) {
         AppLog.logPresenter(this);
+       // CheckInternetUtill.isConnectedWifi();
         if (lastVisibleItemPosition + getItemsCountPerPage() / 3 > totalItemCount
                 && mIsNextPageAllow
                 && !isLoading()) {

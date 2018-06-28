@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vironit.correctapp.R;
 import com.vironit.correctapp.mvp.presentation.presenter.HomePresenter;
@@ -16,6 +17,7 @@ import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.Prof
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IHomeView;
 
 import butterknife.BindView;
+
 
 public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements IHomeView {
 

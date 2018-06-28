@@ -26,6 +26,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         tools:layout_editor_absoluteY="273dp"
-        tools:text="some code for activate" />
+        tools:text="some code for activate"/>
 
 </android.support.constraint.ConstraintLayout>
