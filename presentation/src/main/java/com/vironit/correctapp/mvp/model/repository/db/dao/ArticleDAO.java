@@ -19,10 +19,6 @@ public interface ArticleDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     List<Long> insertNewsDb(ArticleDB... articleDBS);
 
-
-   // @Query("SELECT * FROM "  + ArticlesDB.ARTICLES_TABLE_NAME + " WHERE " + ArticlesDB.ARTICLES_ID +
-   //         " >= :lastNewsId LIMIT :pageSize")
-
     @Query("SELECT * FROM " + ArticleDB.ARTICLE + " WHERE "+ ArticleDB.ARTICLE_ID + " >= :page LIMIT :pageSize")
     Single<List<ArticleDB>> getAllNewsDB(int page, int pageSize);
 

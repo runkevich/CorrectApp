@@ -1,77 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_v_activity_login"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:padding="@dimen/default_2_padding"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_2_padding">
 
-    <LinearLayout
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_login1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_login2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_login3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_login4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login1">
 
         <EditText
             android:id="@+id/et_phone_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="0123456789+"
             android:ems="10"
             android:inputType="phone"
-            android:digits="0123456789+"
-            tools:text="Phone number" />
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            tools:text="Phone Number" />
+    </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/b_singin_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_selector"
+        android:text="Sing in"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_login4"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login2" />
 
-            <Button
-                android:id="@+id/b_singin_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:layout_marginRight="@dimen/default_2_padding"
-                android:background="@drawable/button_selector"
-                android:text="Sing in" />
+    <Button
+        android:id="@+id/b_singup_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/button_selector"
+        android:text="Sing up"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login2"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_login4"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login2" />
 
-            <Button
-                android:id="@+id/b_singup_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_selector"
-                android:text="Sing up" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/custom_login_button_twitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="2dp"
+        android:background="@mipmap/twitter"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/custom_login_button_facebook"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login3" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/custom_login_button_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
+        android:background="@mipmap/facebook"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login3"
+        app:layout_constraintEnd_toStartOf="@+id/custom_login_button_twitter"
+        app:layout_constraintStart_toEndOf="@+id/custom_login_button_google"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login3"
+        app:layout_constraintVertical_bias="0.34" />
 
-            <Button
-                android:id="@+id/custom_login_button_twitter"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@mipmap/twitter" />
+    <Button
+        android:id="@+id/custom_login_button_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="2dp"
+        android:background="@mipmap/google"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login3"
+        app:layout_constraintEnd_toStartOf="@+id/custom_login_button_facebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login3" />
 
-            <Button
-                android:id="@+id/custom_login_button_facebook"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@mipmap/facebook" />
-
-            <Button
-                android:id="@+id/custom_login_button_google"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:background="@mipmap/google" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

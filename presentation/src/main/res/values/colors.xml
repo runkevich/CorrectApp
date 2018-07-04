@@ -11,4 +11,7 @@
     <color name="color_start_light">#919acf</color>
     <color name="color_end_dark">#6a7094</color>
     <color name="color_window_background">#dcdcdc</color>
+
+    <!--My custom color-->
+    <color name="navigation_bar_txt_color">#3F51B5</color>
 </resources>

@@ -42,18 +42,22 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
                         getViewState().addDataList(dataElement.getArticles());
                     })
 
-//                .map((Function<List<Article>, List<ArticleDB>>) articles -> {
-//                    List<ArticleDB> articlesDB = new ArrayList<>();
-//                    for (Article article : articles) {
-//                        articlesDB.add(ArticleToArticleDBConverter.articlesToArticlesDB(article));
-//                    }
-//                    ArticleDB[] resultList = new ArticleDB[articlesDB.size()];
-//                    articlesDB.toArray(resultList);
-//                    return articlesDB;
-//                })
+//                    .map(new io.reactivex.functions.Function<Data, Object>()  {
+//                        @Override
+//                        public Object apply(Data data) throws Exception {
+//                            List<ArticleDB> articlesDB = new ArrayList<>();
+//
+//                            for (Article article : data.getArticles()) {
+//                                articlesDB.add(ArticleToArticleDBConverter.articlesToArticlesDB(article));
+//                            }
+//                            ArticleDB[] resultList = new ArticleDB[articlesDB.size()];
+//                            articlesDB.toArray(resultList);
+//                            return articlesDB;
+//                        }
+//                    })
 
                     // .flatMap(dataElement -> mNewsInteractor.addNewsToDB(convertArticle(dataElement.getArticles())))
-                    //.flatMap(dataElement -> mNewsInteractor.deleteNews(convertArticle(dataElement.getArticles())))
+                    .flatMap(dataElement -> mNewsInteractor.deleteNews(convertArticle(dataElement.getArticles())))
                     .doFinally(() -> getViewState().hidePaginationProgress())
                     .subscribe(list -> AppLog.logPresenter(this, "OOOOOKKKKK"),
                             this));
@@ -75,16 +79,16 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
         for (Article article : articleList) {
             articlesDB.add(ArticleToArticleDBConverter.articlesToArticlesDB(article));
         }
-        ArticleDB[] resultList = new ArticleDB[articlesDB.size()];
-        resultList = articlesDB.toArray(resultList);
-        return resultList;
+        ArticleDB[] articleDBS = new ArticleDB[articlesDB.size()];
+        articleDBS = articlesDB.toArray(articleDBS);
+        return articleDBS;
     }
 
-    private List<Article> mapArticlesDB(List<ArticleDB> articlesDBList) {
-        List<Article> resultList = new ArrayList<>();
-        for (ArticleDB articleDB : articlesDBList) {
-            resultList.add(ArticleToArticleDBConverter.articlesDBToArticl(articleDB));
+    private List<Article> convertArticleDB(List<ArticleDB> articleDBList) {
+        List<Article> articles = new ArrayList<>();
+        for (ArticleDB articleDB : articleDBList) {
+            articles.add(ArticleToArticleDBConverter.articlesDBToArticl(articleDB));
         }
-        return resultList;
+        return articles;
     }
 }

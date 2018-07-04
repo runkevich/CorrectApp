@@ -21,5 +21,6 @@
     <dimen name="default_avatar_size">150dp</dimen>
     <dimen name="default_radius">50dp</dimen>
 
-
+    <!--My custom size-->
+    <dimen name="bottom_navigation_padding">2dp</dimen>
 </resources>

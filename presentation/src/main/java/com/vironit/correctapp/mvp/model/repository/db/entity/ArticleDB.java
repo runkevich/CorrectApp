@@ -50,6 +50,7 @@ public class ArticleDB {
     @Nullable
     private String publishedAt;
 
+
     public ArticleDB(Long articleId,
                      @Nullable Source source,
                      @Nullable String author,
