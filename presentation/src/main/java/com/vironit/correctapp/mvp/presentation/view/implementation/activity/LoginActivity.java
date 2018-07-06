@@ -15,6 +15,7 @@ import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base
 import com.vironit.correctapp.mvp.presentation.view.interfaces.ILoginView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements ILoginView {
 
@@ -30,14 +31,19 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @BindView(R.id.custom_login_button_google)
     Button bGoogle;
 
+    @OnClick(R.id.b_singup_in)
+    void signup(){
+        startActivity(new Intent(this, LoginRegistrationActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mLoginPresenter.signOutFromAllAccounts();
-        bTwitter.setOnClickListener(v -> mLoginPresenter.clickOnTwitter(this));
-        bFacebook.setOnClickListener(v -> mLoginPresenter.clickOnFacebook(this));
-        bGoogle.setOnClickListener(v -> mLoginPresenter.clickOnGoogle(this));
+        //bTwitter.setOnClickListener(v -> mLoginPresenter.clickOnTwitterFB(this));
+        //bFacebook.setOnClickListener(v -> mLoginPresenter.clickOnFacebookFB(this));
+        bGoogle.setOnClickListener(v -> mLoginPresenter.clickOnGoogleFB(this));
     }
 
     public static void start(@Nullable Context context) {

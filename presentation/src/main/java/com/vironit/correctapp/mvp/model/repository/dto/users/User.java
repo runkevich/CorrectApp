@@ -19,6 +19,9 @@ public class User {
 
     private boolean onlineStatus;
 
+    private String userEmail;
+    private String passwordHash; //хэш - функция
+
     public User() {
         userId = "";
         userName = "";

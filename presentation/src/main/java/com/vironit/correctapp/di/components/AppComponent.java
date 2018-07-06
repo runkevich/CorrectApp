@@ -18,6 +18,7 @@ import com.vironit.correctapp.di.modules.SocialNetworkModule;
 import com.vironit.correctapp.mvp.presentation.presenter.ChatPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.HomePresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.LoginPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.LoginRegistrationPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.NewsPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.ProfilePresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.TestPresenter;
@@ -55,4 +56,6 @@ public interface AppComponent {
     void inject(NewsPresenter newsPresenter);
 
     void inject(HomePresenter homePresenter);
+
+    void inject(LoginRegistrationPresenter loginRegistrationPresenter);
 }

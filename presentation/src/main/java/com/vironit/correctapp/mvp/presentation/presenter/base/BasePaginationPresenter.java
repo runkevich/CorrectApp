@@ -78,6 +78,10 @@ public abstract class BasePaginationPresenter<View extends IBasePaginationView> 
         getViewState().showPaginationProgress();
     }
 
+    //search из активити сказать типо ищ
+    // и делать проверку на то же самое введенное значение(debounds)
+
+    //новый символ - отписываемся и делаем новый запрос
     protected int getItemsCountPerPage() {
         return AppConstants.DEFAULT_ITEMS_COUNT_PER_PAGE;
     }

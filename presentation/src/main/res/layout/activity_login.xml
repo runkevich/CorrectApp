@@ -8,6 +8,12 @@
     android:padding="@dimen/default_2_padding">
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline_login0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+    <android.support.constraint.Guideline
         android:id="@+id/guideline_login1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,24 +45,40 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_login1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_login1">
+        app:layout_constraintTop_toTopOf="@+id/guideline_login0">
 
         <EditText
-            android:id="@+id/et_phone_in"
+            android:id="@+id/et_email_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="0123456789+"
             android:ems="10"
-            android:inputType="phone"
+            android:inputType="textEmailAddress"
             android:selectAllOnFocus="false"
             android:singleLine="false"
             android:textAlignment="center"
-            tools:text="Phone Number" />
+            tools:text="Email or Login name" />
+
     </android.support.design.widget.TextInputLayout>
 
+    <EditText
+        android:id="@+id/et_password_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_login1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_login1"
+        tools:text="Email or Login name" />
     <Button
         android:id="@+id/b_singin_in"
         android:layout_width="wrap_content"

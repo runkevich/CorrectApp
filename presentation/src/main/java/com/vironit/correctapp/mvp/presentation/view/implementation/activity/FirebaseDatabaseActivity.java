@@ -32,6 +32,8 @@ public class FirebaseDatabaseActivity extends AppCompatActivity {
     @BindView(R.id.tv_firebase_databse_text)
     TextView mTextView;
 
+    //onDisconnect - для online
+    //поиск в фаербейз по именам, написанным капсом
     @OnClick(R.id.btn_firebase_database_1)
     void firebase1() {
         RxFirebaseDatabase.observeValueEvent(mDatabaseReference.child(FirebaseConstants.USERS_JSON),
