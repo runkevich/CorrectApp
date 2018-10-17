@@ -54,7 +54,7 @@ public abstract class BaseFragment<P extends BaseAppPresenter> extends MvpAppCom
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
         if (context instanceof IBaseView) {
-            mRootActivityIBaseView = (IBaseView) context;
+            mRootActivityIBaseView =  (IBaseView) context;
         }
     }
 

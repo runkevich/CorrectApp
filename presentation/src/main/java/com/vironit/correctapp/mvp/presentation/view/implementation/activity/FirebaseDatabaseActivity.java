@@ -61,7 +61,7 @@ public class FirebaseDatabaseActivity extends AppCompatActivity {
         Single.just(mDatabaseReference.child(FirebaseConstants.USERS_JSON))
                 .map(ref -> ref.push().getKey())
                 .flatMap(key -> RxFirebaseDatabase.setValue(mDatabaseReference.child(FirebaseConstants.USERS_JSON).child(key),
-                        new User("TROLO", "", null, true))
+                        new User("TROLO","", "", true,"",""))
                         .toSingle(() -> true))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

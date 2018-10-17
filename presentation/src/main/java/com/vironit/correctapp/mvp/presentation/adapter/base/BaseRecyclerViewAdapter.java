@@ -16,17 +16,25 @@ public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.View
     protected BaseRecyclerViewAdapter() {
     }
 
-    public void addData(@NonNull List<Data> dataItems) {
-        AppLog.logObject(this);
-        this.mDataList.addAll(dataItems);
-        notifyItemRangeInserted(mDataList.size(), dataItems.size());
-    }
-
     public void removeData() {
         AppLog.logObject(this);
         int size = mDataList.size();
         mDataList.clear();
         notifyItemRangeRemoved(0, size);
+    }
+
+    public void addData(@NonNull List<Data> dataItems) {
+        AppLog.logObject(this);
+        this.mDataList.addAll(dataItems);
+       //notifyItemRangeInserted(, dataItems.size());
+        notifyItemInserted(mDataList.size());
+    }
+
+    public void addDataAll(@NonNull List<Data> dataItems) {
+        AppLog.logObject(this);
+        //TODO доделать удаление старых
+        this.mDataList.addAll(dataItems);
+        notifyItemRangeInserted(mDataList.size(), dataItems.size());
     }
 
     @Override
@@ -44,4 +52,10 @@ public abstract class BaseRecyclerViewAdapter<Data, VH extends RecyclerView.View
         AppLog.logObject(this);
         return mDataList;
     }
+
+    //set - заменяет
+
+
+    //DiffUtil
+    //setStablesid adapter
 }

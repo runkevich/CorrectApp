@@ -20,16 +20,16 @@ import com.google.maps.android.clustering.ClusterManager;
 import com.vironit.correctapp.R;
 import com.vironit.correctapp.mvp.model.repository.dto.maps.MyItem;
 import com.vironit.correctapp.mvp.model.repository.dto.maps.MyItemMarkerRender;
-import com.vironit.correctapp.mvp.presentation.presenter.ChatPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.MapPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.base.BaseFragment;
-import com.vironit.correctapp.mvp.presentation.view.interfaces.IChatView;
+import com.vironit.correctapp.mvp.presentation.view.interfaces.IMapView;
 
 import butterknife.OnClick;
 
-public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatView,OnMapReadyCallback{
+public class MapFragment extends BaseFragment<MapPresenter> implements IMapView,OnMapReadyCallback{
 
     @InjectPresenter
-    ChatPresenter mChatPresenter;
+    MapPresenter mMapPresenter;
 
     private ClusterManager<MyItem> mClusterManager;
     private GoogleMap myMap;
@@ -41,17 +41,17 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
     }
 
     @Override
-    protected ChatPresenter getPresenter() {
-        return mChatPresenter;
+    protected MapPresenter getPresenter() {
+        return mMapPresenter;
     }
 
     @Override
     public int getLayoutResId() {
-        return R.layout.fragment_chat;
+        return R.layout.fragment_map;
     }
 
-    public static ChatFragment newInstance(){
-        return new ChatFragment();
+    public static MapFragment newInstance(){
+        return new MapFragment();
     }
 
     @Nullable
@@ -59,7 +59,7 @@ public class ChatFragment extends BaseFragment<ChatPresenter> implements IChatVi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
         MapsInitializer.initialize(this.getActivity());
-        mMapView = (MapView) rootView.findViewById(R.id.map_view);
+        mMapView = (MapView) rootView.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
         return rootView;

@@ -3,12 +3,12 @@ package com.vironit.correctapp.mvp.presentation.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.vironit.correctapp.App;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
-import com.vironit.correctapp.mvp.presentation.view.interfaces.IChatView;
+import com.vironit.correctapp.mvp.presentation.view.interfaces.IMapView;
 
 @InjectViewState
-public class ChatPresenter extends BaseAppPresenter<IChatView>{
+public class MapPresenter extends BaseAppPresenter<IMapView>{
 
-    public ChatPresenter() {
+    public MapPresenter() {
         App.getsAppComponent().inject(this);
     }
 

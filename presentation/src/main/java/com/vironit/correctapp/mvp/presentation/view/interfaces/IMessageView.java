@@ -11,8 +11,8 @@ public interface IMessageView {
                                @NonNull String message,
                                @NonNull String positiveOptionMessage,
                                @NonNull String negative,
-                               @Nullable DialogInterface.OnClickListener  positiveListener,
-                               @Nullable DialogInterface.OnClickListener  negativeListener);
+                               @Nullable DialogInterface.OnClickListener positiveListener,
+                               @Nullable DialogInterface.OnClickListener negativeListener);
     void hideDialogMessage();
     void hideMessage();
 

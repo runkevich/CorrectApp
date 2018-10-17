@@ -17,8 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterCore;
@@ -27,20 +25,17 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 import com.vironit.correctapp.App;
 import com.vironit.correctapp.constans.AppConstants;
-import com.vironit.correctapp.constans.FirebaseConstants;
-import com.vironit.correctapp.mvp.model.repository.dto.users.User;
+import com.vironit.correctapp.mvp.model.interactor.interfaces.OauthInteractor;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.ILoginView;
+import com.vironit.correctapp.utils.AppLog;
 
 import java.util.Arrays;
 
 import javax.inject.Inject;
 
-import durdinapps.rxfirebase2.RxFirebaseDatabase;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
 public class LoginPresenter extends BaseAppPresenter<ILoginView> {
@@ -54,12 +49,14 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
     @Inject
     CallbackManager mCallbackManager;
 
-    DatabaseReference mDatabaseReference;
+    @Inject
+    OauthInteractor mOauthInteractor;
 
     private String selectedLoginButton = "";
     String personEmail = "";
     String personId = "";
     String personName = "";
+    String personPassword = "1111";
 
     public LoginPresenter() {
         App.getsAppComponent().inject(this);
@@ -95,7 +92,6 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
     }
 
     public void clickOnGoogle(@NonNull Activity activity) {
-
         selectedLoginButton = AppConstants.GOOGLE;
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         activity.startActivityForResult(signInIntent, AppConstants.RC_SIGN_IN);
@@ -107,7 +103,7 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
             @Override
             public void success(Result<TwitterSession> result) {
                 //getViewState().showSuccesMessage();
-                getViewState().goToHomeActivity();
+                // getViewState().goToHomeActivity();
             }
 
             @Override
@@ -121,12 +117,11 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.i("TAG", "Google");
-            getViewState().goToHomeActivity();
+            //getViewState().goToHomeActivity(); !!!!!!!1
         } catch (ApiException e) {
 
             Log.w("TAG", "signInResult:failed code=" + e.getStatusCode());
             getViewState().showFailMessage();
-
         }
     }
 
@@ -142,24 +137,18 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
                 break;
             case AppConstants.GOOGLE:
                 if (requestCode == AppConstants.RC_SIGN_IN) {
+
                     GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(activity);
 
-                            personEmail = acct.getEmail();
-                             personName = acct.getDisplayName();
-                            String personGivenName = acct.getGivenName();
-                            String personFamilyName = acct.getFamilyName();
-                            personId = acct.getId();
-                            Uri personPhoto = acct.getPhotoUrl();
+                    personEmail = acct.getEmail();
+                    personName = acct.getDisplayName().toUpperCase();
+                    String personGivenName = acct.getGivenName();
+                    String personFamilyName = acct.getFamilyName();
+                    personId = acct.getId();
+                    Uri personPhoto = acct.getPhotoUrl();
 
-                    Single.just(mDatabaseReference.child(FirebaseConstants.USERS_JSON))
-                            .map(ref -> ref.push().getKey())
-                            .flatMap(key -> RxFirebaseDatabase.setValue(mDatabaseReference.child(FirebaseConstants.USERS_JSON).child(key),
-                                    new User(personEmail, personId, null, true))
-                                    .toSingle(() -> true))
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(ref -> Log.i("LOG_TAG", "YEP"),
-                                    e -> Log.i("LOG_TAG", "NOPE"));
+                    getViewState().setInformationAccount(personName, personPassword);
+                    authorize(personName, personPassword);
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                     handleSignInResult(task);
                 }
@@ -176,7 +165,6 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         }
         LoginManager.getInstance().logOut();
         mGoogleSignInClient.signOut();
-
     }
 
     @Override
@@ -186,11 +174,54 @@ public class LoginPresenter extends BaseAppPresenter<ILoginView> {
         mTwitterAuthClient.cancelAuthorize();
     }
 
-    public void clickOnGoogleFB(@NonNull Activity activity){
+//    public void checkAccount(@NonNull String text) {
+//        String name = text.toUpperCase();
+//
+//        Single.just(mDatabaseReference.child(FirebaseConstants.USERS_JSON).orderByChild(FirebaseConstants.USER_NAME)
+//                .equalTo(name).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot datas : dataSnapshot.getChildren()) {
+//                            Log.i("LOG_TAG", "This accout has - from rx");
+//                            getViewState().goToHomeActivity();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//                        Log.i("LOG_TAG", "i don't know what a error - from rx");
+//                    }
+//                }))
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnError(r -> Log.i("LOG_TAG", "i don't know what a error"));
+    //   }
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        selectedLoginButton = AppConstants.GOOGLE;
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        activity.startActivityForResult(signInIntent, AppConstants.RC_SIGN_IN);
+    public void authorize(String tEmailIn_s, String tPasswordIn_s) {
+
+        mOauthInteractor.authorize(tEmailIn_s, tPasswordIn_s)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(success -> getViewState().goToHomeActivity())
+                .doOnError(error -> getViewState().showAutoClosableMessage("Зарегистрируйтесь, такого пользователя не существует."))
+                .subscribe(co -> AppLog.logPresenter(this, "OOOOOKKKKK4"),
+                        co -> AppLog.logPresenter(this, "Not registration"));
+
+
+       /* mOauthInteractor.authorize(tEmailIn_s, tPasswordIn_s)
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorResumeNext(throwable -> {
+                    if (throwable instanceof CorrectAppException &&
+                            ErrorStatus.USER_IS_NOT_EXIST == ((CorrectAppException) throwable).getErrorStatus()) {
+                        Log.i("APP_LOG", ((CorrectAppException) throwable).getErrorStatus().toString());
+                        getViewState().showAutoClosableMessage("Зарегистрируйтесь, такого пользователя не существует.");
+                        return user -> error(throwable);
+                    } else {
+                        getViewState().goToHomeActivity(); //TODO check this
+                        Log.i("APP_LOG", "Юзер есть");
+                        return user -> Single.just(true);
+                    }
+                })
+                .subscribe(co -> AppLog.logPresenter(this, "OOOOOKKKKK4"),
+                        co -> AppLog.logPresenter(this, "Not registration"));*/
     }
 }

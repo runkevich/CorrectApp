@@ -17,6 +17,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.vironit.correctapp.App;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.ImageInteractor;
 import com.vironit.correctapp.mvp.model.repository.dto.image.ImageData;
+import com.vironit.correctapp.mvp.model.repository.interfaces.OauthRepository;
 import com.vironit.correctapp.mvp.presentation.presenter.base.BaseAppPresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.CustomView;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseActivity;
@@ -33,6 +34,8 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
     @Inject
     ImageInteractor mImageInteractor;
 
+    @Inject
+    OauthRepository mOauthRepository;
 
     public ProfilePresenter() {
         App.getsAppComponent().inject(this);
@@ -40,6 +43,12 @@ public class ProfilePresenter extends BaseAppPresenter<IProfileView> {
 
     public static final int GALLERY_REQUEST_CODE = 123;
     public static final int CAMERA_REQUEST_CODE = 321;
+
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().setUserName(mOauthRepository.getThisUserName());
+    }
 
     public void startGallery(@NonNull Fragment fragment) {
         RxPermissions rxPermissions = new RxPermissions(fragment.getActivity());

@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 
-import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vironit.correctapp.R;
 import com.vironit.correctapp.mvp.presentation.presenter.HomePresenter;
 import com.vironit.correctapp.mvp.presentation.view.implementation.activity.base.BaseFragmentActivity;
-import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ChatFragment;
+import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ChatsFragment;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.NewsFragment;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ProfileFragment;
 import com.vironit.correctapp.mvp.presentation.view.interfaces.IHomeView;
@@ -32,7 +30,7 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(),ProfileFragment.newInstance())
+                .replace(getContainerViewId(), ProfileFragment.newInstance())
                 .commit();
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -68,10 +66,9 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
 
     @Override
     public void showNews() {
-        Fragment fragment = new NewsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(), fragment)
+                .replace(getContainerViewId(), NewsFragment.newInstace())
                 .commit();
     }
 
@@ -79,7 +76,7 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
     public void showChat() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(getContainerViewId(), ChatFragment.newInstance())
+                .replace(getContainerViewId(), ChatsFragment.newInstance())
                 .commit();
     }
 
@@ -99,7 +96,10 @@ public class HomeActivity extends BaseFragmentActivity<HomePresenter> implements
 
     }
 
+
     private int getContainerViewId() {
         return R.id.frame_layout;
     }
+
+
 }

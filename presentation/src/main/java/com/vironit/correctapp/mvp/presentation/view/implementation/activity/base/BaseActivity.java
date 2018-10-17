@@ -146,6 +146,9 @@ public abstract class BaseActivity<P extends BaseAppPresenter> extends MvpAppCom
         //TODO initBeforeLayoutAttach
     }
 
+    protected void initViewBeforePresenterAttach() {
+    }
+
     protected String getResourseString(@StringRes int stringId) {
         return mResourceManager.getString(stringId);
     }

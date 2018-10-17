@@ -33,4 +33,9 @@ public class TestPresenter extends BaseAppPresenter<ITestView> {
     public void asdas(){
         getViewState().hideProgress();
     }
+
+    public void onlineStatus(){
+        addLiteDisposable(Single.timer(10,TimeUnit.MINUTES)
+        .subscribe());
+    }
 }

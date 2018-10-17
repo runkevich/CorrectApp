@@ -4,7 +4,6 @@ import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(SkipStrategy.class)
-public interface IChatView extends IBaseView{
+public interface ITempView extends IBaseView{
 
-    void showMaps();
 }

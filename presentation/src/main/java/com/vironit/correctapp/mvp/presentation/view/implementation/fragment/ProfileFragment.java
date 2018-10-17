@@ -1,6 +1,7 @@
 package com.vironit.correctapp.mvp.presentation.view.implementation.fragment;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
@@ -20,17 +21,20 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements I
     ProfilePresenter mProfilePresenter;
 
     @OnClick(R.id.btn_load_photo_camera)
-    void photo1(){
-      mProfilePresenter.startCamera(this);
+    void photo1() {
+        mProfilePresenter.startCamera(this);
     }
 
     @OnClick(R.id.btn_load_photo_gallery)
-    void photo2(){
+    void photo2() {
         mProfilePresenter.startGallery(this);
     }
 
     @BindView(R.id.image_profile)
     ImageView mProfilePhoto;
+
+    @BindView(R.id.tv_user_name)
+    TextView mUserName;
 
     @Override
     protected ProfilePresenter getPresenter() {
@@ -51,5 +55,10 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements I
         Glide.with(this)
                 .load(file)
                 .into(mProfilePhoto);
+    }
+
+    @Override
+    public void setUserName(String name) {
+        mUserName.setText(name);
     }
 }

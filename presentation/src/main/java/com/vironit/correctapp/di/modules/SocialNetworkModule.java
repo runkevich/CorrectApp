@@ -36,5 +36,4 @@ public class SocialNetworkModule {
     CallbackManager getCallbackManager(){
         return CallbackManager.Factory.create();
     }
-
 }

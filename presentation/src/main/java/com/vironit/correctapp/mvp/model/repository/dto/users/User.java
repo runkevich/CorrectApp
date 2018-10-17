@@ -8,7 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class User {
 
-    @NonNull
+
     private String userName;
 
     @NonNull
@@ -16,30 +16,64 @@ public class User {
 
     @Nullable
     private String firebaseToken;
-
+    @NonNull
     private boolean onlineStatus;
 
+    @NonNull
     private String userEmail;
-    private String passwordHash; //хэш - функция
 
-    public User() {
-        userId = "";
-        userName = "";
-        firebaseToken = "";
-        onlineStatus = false;
+    private String passwordHash;
+
+    /*private boolean isChecked;
+
+    public boolean getChecked() {
+        return isChecked;
     }
 
-    public User(@NonNull String userName,
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }*/
+
+    @NonNull
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(@NonNull String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public User() {
+       /* userId = "id";
+        userName = "name";
+        firebaseToken = "";
+        onlineStatus = false;
+        userEmail = "email";*/
+    }
+
+    public User( String userName,
                 @NonNull String userId,
                 @Nullable String firebaseToken,
-                boolean onlineStatus) {
+                boolean onlineStatus,
+                @NonNull String userEmail,
+                @NonNull String passwordHash) {
         this.userName = userName;
         this.userId = userId;
         this.firebaseToken = firebaseToken;
         this.onlineStatus = onlineStatus;
+        this.userEmail = userEmail;
+        this.passwordHash = passwordHash;
     }
 
-    @NonNull
+
     public String getUserName() {
         return userName;
     }
@@ -81,6 +115,8 @@ public class User {
                 ", userId='" + userId + '\'' +
                 ", firebaseToken='" + firebaseToken + '\'' +
                 ", onlineStatus=" + onlineStatus +
+                ", userEmail='" + userEmail + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
                 '}';
     }
 }

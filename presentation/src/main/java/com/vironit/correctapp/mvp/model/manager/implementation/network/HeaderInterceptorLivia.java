@@ -23,10 +23,10 @@ public class HeaderInterceptorLivia implements Interceptor {
     public Response intercept(Interceptor.Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Request.Builder mBuilder = originalRequest.newBuilder();
-        if (mTockenManager.isTockenValid()){
-            mBuilder.header("LIVIAPP-TOCKEN",mTockenManager.getTocken().getAccess());
-            return chain.proceed(mBuilder.build());
-        }
+//        if (mTockenManager.isTockenValid()){
+//            mBuilder.header("LIVIAPP-TOCKEN",mTockenManager.getTocken().getAccess());
+//            return chain.proceed(mBuilder.build());
+//        }
        return null;
     }
 }

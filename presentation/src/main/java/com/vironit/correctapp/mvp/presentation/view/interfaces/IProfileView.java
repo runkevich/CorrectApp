@@ -11,4 +11,7 @@ public interface IProfileView extends IBaseView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void setPhoto(File file);
+
+    @StateStrategyType(OneExecutionStateStrategy.class)
+    void setUserName(String name);
 }

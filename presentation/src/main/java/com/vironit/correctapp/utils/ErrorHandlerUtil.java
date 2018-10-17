@@ -20,11 +20,10 @@ public abstract class ErrorHandlerUtil {
             return Single.error(throwable);
         } else if (isNoNetworkException(throwable)) {
             return Single.error(new CorrectAppException(R.string.no_network));
-        } else {
+        }  else {
             return Single.error(new CorrectAppException(R.string.unknown_error));
         }
     }
-
 
     private static boolean isNoNetworkException(@Nullable Throwable throwable) {
         return throwable != null

@@ -1,8 +1,10 @@
 package com.vironit.correctapp.di.modules;
 
+import com.vironit.correctapp.mvp.model.interactor.implementation.ChatInteractorImpl;
 import com.vironit.correctapp.mvp.model.interactor.implementation.ImageInteractorImpl;
 import com.vironit.correctapp.mvp.model.interactor.implementation.NewsInteractorImpl;
 import com.vironit.correctapp.mvp.model.interactor.implementation.OauthInteractorImpl;
+import com.vironit.correctapp.mvp.model.interactor.interfaces.ChatInteractor;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.ImageInteractor;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.NewsInteractor;
 import com.vironit.correctapp.mvp.model.interactor.interfaces.OauthInteractor;
@@ -26,4 +28,8 @@ public interface IteractorModule {
     @Binds
     @Singleton
     OauthInteractor provideOauthInteractor(OauthInteractorImpl oauthInteractor);
+
+    @Binds
+    @Singleton
+    ChatInteractor provideChatInteractor(ChatInteractorImpl chatInteractor);
 }

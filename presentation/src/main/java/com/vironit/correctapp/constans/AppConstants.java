@@ -25,6 +25,9 @@ public interface AppConstants {
     long CASH_SIZE = 20 * 1024 * 1024;
 
     int NO_STRING_RES = -1;
+    int THIS_USER_EXIST = -2;
+    int THIS_IS_NOT_USER_EXIST = -3;
+    int CHAT_IS_NOT_EXIST_FOR_THIS_USER = -4;
 
     int DEFAULT_ITEMS_COUNT_PER_PAGE = 20;
     int LOAD_PAGE_SIZE = 10;

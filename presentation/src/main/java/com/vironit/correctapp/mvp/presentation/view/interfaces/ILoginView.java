@@ -14,4 +14,6 @@ public interface ILoginView extends IBaseView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void goToHomeActivity();
+
+    void setInformationAccount(String email, String password);
 }

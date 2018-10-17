@@ -35,4 +35,5 @@
     <string name="no_network">no network</string>
     <string name="error_news">Error with show news</string>
     <string name="small_string">ololo</string>
+    <string name="database_connect_error">Database unconnect</string>
 </resources>

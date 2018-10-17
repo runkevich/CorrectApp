@@ -17,21 +17,21 @@ public class SchedulersModule {
     @Provides
     @Singleton
     @Named(AppConstants.COMPUTATION_SCHEDULER)
-    Scheduler provideCompitationScheduler(){
+    Scheduler provideCompitationScheduler() {
         return Schedulers.computation();
-   }
+    }
 
-   @Provides
-   @Singleton
-   @Named(AppConstants.IO_SCHEDULER)
-    Scheduler provideIOScheduler(){
-       return Schedulers.io();
+    @Provides
+    @Singleton
+    @Named(AppConstants.IO_SCHEDULER)
+    Scheduler provideIOScheduler() {
+        return Schedulers.io();
     }
 
     @Provides
     @Singleton
     @Named(AppConstants.UI_SCHEDULER)
-    Scheduler provideUIScheduler(){
+    Scheduler provideUIScheduler() {
         return AndroidSchedulers.mainThread();
     }
 }

@@ -15,13 +15,17 @@ import com.vironit.correctapp.di.modules.RepozitoryModule;
 import com.vironit.correctapp.di.modules.RetrofitModule;
 import com.vironit.correctapp.di.modules.SchedulersModule;
 import com.vironit.correctapp.di.modules.SocialNetworkModule;
-import com.vironit.correctapp.mvp.presentation.presenter.ChatPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.ChatsMainPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.ChatsPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.HomePresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.LoginPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.LoginRegistrationPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.MapPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.NewsPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.ProfilePresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.TempPresenter;
 import com.vironit.correctapp.mvp.presentation.presenter.TestPresenter;
+import com.vironit.correctapp.mvp.presentation.presenter.UserAddToChatsMainPresenter;
 
 import javax.inject.Singleton;
 
@@ -49,7 +53,7 @@ public interface AppComponent {
 
     void inject(LoginPresenter loginPresenter);
 
-    void inject(ChatPresenter chatPresenter);
+    void inject(MapPresenter mapPresenter);
 
     void inject(ProfilePresenter profilePresenter);
 
@@ -58,4 +62,13 @@ public interface AppComponent {
     void inject(HomePresenter homePresenter);
 
     void inject(LoginRegistrationPresenter loginRegistrationPresenter);
+
+    void inject(ChatsPresenter chatsPresenter);
+
+
+    void inject(UserAddToChatsMainPresenter userAddToChatsMainPresenter);
+
+    void inject(ChatsMainPresenter chatsMainPresenter);
+
+    void inject(TempPresenter tempPresenter);
 }

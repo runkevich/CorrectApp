@@ -69,8 +69,8 @@ public class NewsPresenter extends BasePaginationPresenter<INewsView> {
     }
 
     @Override
-    public void detachView(INewsView view) {
-        super.detachView(view);
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
         refreshData();
     }
 

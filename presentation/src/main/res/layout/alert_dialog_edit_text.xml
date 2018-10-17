@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/etComments"
+            android:layout_width="fill_parent"
+            android:layout_height="51dp"
+            android:gravity="top"
+            android:hint="Введите название чата"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="3"
+            android:minLines="6"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,9 +1,12 @@
 package com.vironit.correctapp.di.modules;
 
 import com.vironit.correctapp.di.annotations.FragmentScope;
-import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ChatFragment;
+import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ChatsFragment;
+import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ChatsMessageFragment;
+import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.MapFragment;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.NewsFragment;
 import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.ProfileFragment;
+import com.vironit.correctapp.mvp.presentation.view.implementation.fragment.UserAddToChatsMainFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -14,7 +17,7 @@ public interface AppFragmentsModule {
 
     @FragmentScope
     @ContributesAndroidInjector(modules = ActivityModule.class)
-    ProfileFragment profileFragmentInjector ();
+    ProfileFragment profileFragmentInjector();
 
     @FragmentScope
     @ContributesAndroidInjector(modules = ActivityModule.class)
@@ -22,5 +25,17 @@ public interface AppFragmentsModule {
 
     @FragmentScope
     @ContributesAndroidInjector(modules = ActivityModule.class)
-    ChatFragment chatFragmentInjector();
+    MapFragment mapFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ActivityModule.class)
+    ChatsFragment chatFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ActivityModule.class)
+    UserAddToChatsMainFragment userAddToChatsMainFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ActivityModule.class)
+    ChatsMessageFragment chatsMainFragment();
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -31,19 +32,39 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @BindView(R.id.custom_login_button_google)
     Button bGoogle;
 
+    @BindView(R.id.et_email_in)
+    EditText tEmailIn;
+
+    @BindView(R.id.et_password_in)
+    EditText tPasswordIn;
+
+    @OnClick(R.id.b_singin_in)
+    void singin() {
+
+        String tEmailIn_s = tEmailIn.getText().toString();
+        String tPasswordIn_s = tPasswordIn.getText().toString();
+
+        if (!tEmailIn_s.equals("") && !tPasswordIn_s.equals("")) {
+            mLoginPresenter.authorize(tEmailIn_s, tPasswordIn_s);
+        } else {
+            showAutoClosableMessage("Неправильно введены данные!");
+        }
+    }
+
     @OnClick(R.id.b_singup_in)
-    void signup(){
+    void signup() {
+        //mLoginPresenter.registration(String.valueOf(tEmailIn.getText()),"",String.valueOf(tPasswordIn.getText()));
         startActivity(new Intent(this, LoginRegistrationActivity.class));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mLoginPresenter.signOutFromAllAccounts();
-        //bTwitter.setOnClickListener(v -> mLoginPresenter.clickOnTwitterFB(this));
-        //bFacebook.setOnClickListener(v -> mLoginPresenter.clickOnFacebookFB(this));
-        bGoogle.setOnClickListener(v -> mLoginPresenter.clickOnGoogleFB(this));
+
+        bTwitter.setOnClickListener(v -> mLoginPresenter.clickOnTwitter(this));
+        bFacebook.setOnClickListener(v -> mLoginPresenter.clickOnFacebook(this));
+        bGoogle.setOnClickListener(v -> mLoginPresenter.clickOnGoogle(this));
     }
 
     public static void start(@Nullable Context context) {
@@ -72,8 +93,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                             boolean closable,
                             @Nullable String actionMessage,
                             @Nullable IActionListener iActionListener) {
-
     }
+
 
     @Override
     public void showFailMessage() {
@@ -89,4 +110,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     public void goToHomeActivity() {
         startActivity(new Intent(this, HomeActivity.class));
     }
+
+    @Override
+    public void setInformationAccount(String email, String password) {
+        if (email != null && password != null){
+            tEmailIn.setText(email);
+            tPasswordIn.setText(password);
+        }
+    }
+
+
 }

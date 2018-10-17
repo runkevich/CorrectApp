@@ -29,6 +29,7 @@ public class NewsFragment extends BasePaginationFragment<NewsPresenter>
     @BindView(R.id.rv_news)
     RecyclerView mRecyclerView;
 
+    @Nullable
     @BindView(R.id.swipe_refresh_ly)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -75,14 +76,12 @@ public class NewsFragment extends BasePaginationFragment<NewsPresenter>
     protected void setPaginationRecyclerAdapter() {
         mNewsAdapter = new NewsAdapter();
         mRecyclerView.setAdapter(mNewsAdapter);
-
     }
 
     @Override
     protected void setLayoutManager() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
     }
-
 
     @Override
     public void addDataList(List<Article> dataList) {

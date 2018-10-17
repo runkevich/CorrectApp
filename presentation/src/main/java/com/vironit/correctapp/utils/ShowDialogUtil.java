@@ -71,9 +71,39 @@ public abstract class ShowDialogUtil {
             return null;
         }
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyleSimple))
                 .setTitle(title)
                 .setMessage(message)
+                .setPositiveButton(positiveOptionMessage, positiveListener)
+                .setNegativeButton(negativeOptionMessage, negativeListener)
+                .setCancelable(cancelable);
+
+        AlertDialog materialDialog = builder.show();
+        materialDialog.setCanceledOnTouchOutside(cancelable);
+        materialDialog.setCancelable(cancelable);
+        return materialDialog;
+    }
+
+
+    @Nullable
+    public static AlertDialog showMessageDialogWithEditTextInput(@Nullable Activity activity,
+                                                @NonNull String title,
+                                                @NonNull String message,
+                                                @NonNull String positiveOptionMessage,
+                                                @NonNull String negativeOptionMessage,
+                                                @Nullable View view,
+                                                DialogInterface.OnClickListener positiveListener,
+                                                DialogInterface.OnClickListener negativeListener,
+                                                boolean cancelable) {
+        if (activity == null || activity.isFinishing()) {
+            return null;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogStyleSimple))
+                .setTitle(title)
+                .setMessage(message)
+                .setView(view)
                 .setPositiveButton(positiveOptionMessage, positiveListener)
                 .setNegativeButton(negativeOptionMessage, negativeListener)
                 .setCancelable(cancelable);
